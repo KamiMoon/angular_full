@@ -1,0 +1,26 @@
+body {
+	margin: 0px;
+	overflow: hidden;
+}
+
+#info {
+	color: #fff;
+	position: absolute;
+	top: 10px;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	display: block;
+}
+
+#stats {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+#propertyPanelContainer{
+	position: absolute;
+	z-index: 100;
+	right: 0px;
+}
