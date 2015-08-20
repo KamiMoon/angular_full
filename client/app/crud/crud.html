@@ -1,0 +1,61 @@
+<div class="container">
+    <p>Current Tasks Board</p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>
+                    <td>Name</td>
+                    <td>Worked (hrs)</td>
+                    <td>Estimated (hrs)</td>
+                    <td>Status</td>
+                    <td>Action</td>
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in tasks">
+                    <td></td>
+                    <td>{{task.name}}</td>
+                    <td>
+                        <input ng-model="task.hoursWorkedOn" type="number" ng-required="number" class="form-control" placeholder="Worked (hrs)">
+                    </td>
+                    <td>
+                        <input ng-model="task.estimatedHours" type="number" ng-required="number" class="form-control" placeholder="Worked (hrs)">
+                    </td>
+                    <td>
+                        <select ng-model="task.status">
+                            <option ng-repeat="status in statuses track by status" value="{{status}}">{{status}}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <button ng-click="saveTask(task)" type="button" class="btn btn-success">Save</button>
+                        <button ng-click="deleteTask(task)" type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input ng-model="taskToAdd.name" type="text" class="form-control" placeholder="Name" required>
+                    </td>
+                    <td>
+                        <input ng-model="taskToAdd.hoursWorkedOn" type="number" ng-required="number" class="form-control" placeholder="Worked (hrs)">
+                    </td>
+                    <td>
+                        <input ng-model="taskToAdd.estimatedHours" type="number" ng-required="number" class="form-control" placeholder="Estimated (hrs)">
+                    </td>
+                    <td>
+                        <select ng-model="taskToAdd.status">
+                            <option ng-repeat="status in statuses" value="{{status}}">{{status}}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <button ng-click="addTask()" type="button" class="btn btn-primary">
+                            Add
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
