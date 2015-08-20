@@ -225,8 +225,10 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%= yeoman.dist %>/public/{,*/}*.js',
-                        '<%= yeoman.dist %>/public/{,*/}*.css',
+                        '<%= yeoman.dist %>/public/app/{,*/}*.js',
+                        '<%= yeoman.dist %>/public/bower_components/{,*/}*.js',
+                        '<%= yeoman.dist %>/public/app/{,*/}*.css',
+                        '<%= yeoman.dist %>/public/bower_components/{,*/}*.css',
                         '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
                         '<%= yeoman.dist %>/public/assets/fonts/*'
                     ]
@@ -246,9 +248,9 @@ module.exports = function(grunt) {
 
         // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
-            html: ['<%= yeoman.dist %>/public/{,*/}*.html'],
-            css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
-            js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
+            html: ['<%= yeoman.dist %>/public/index.html'],
+            css: ['<%= yeoman.dist %>/public/app/{,*/}*.css'],
+            js: ['<%= yeoman.dist %>/public/app/{,*/}*.js'],
             options: {
                 assetsDirs: [
                     '<%= yeoman.dist %>/public',
@@ -330,7 +332,7 @@ module.exports = function(grunt) {
         // Replace Google CDN references
         cdnify: {
             dist: {
-                html: ['<%= yeoman.dist %>/public/*.html']
+                html: ['<%= yeoman.dist %>/public/app/*.html']
             }
         },
 
