@@ -93,7 +93,8 @@ module.exports = function(grunt) {
                     '!{.tmp,<%= yeoman.client %>}{app,components}/**/*.spec.js',
                     '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js',
                     '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
-                    '<%= yeoman.client %>/css3presentation/{,*//*}*'
+                    '<%= yeoman.client %>/css3presentation/{,*//*}*',
+                    '<%= yeoman.client %>/threejslot/{,*//*}*'
                 ],
                 options: {
                     livereload: true
@@ -351,6 +352,7 @@ module.exports = function(grunt) {
                         'assets/images/{,*/}*.{webp}',
                         'assets/fonts/**/*',
                         'css3presentation/**/*',
+                        'threejslot/**/*',
                         'index.html'
                     ]
                 }, {
