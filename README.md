@@ -1,5 +1,5 @@
 # angular_full
 
-Portfolio application using the MEAN stack.
+Portfolio website of Eric Kizaki using the MEAN stack.
 
-See http://angular-full.herokuapp.com/
+See http://www.erickizaki.com
