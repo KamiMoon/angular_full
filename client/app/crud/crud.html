@@ -22,9 +22,7 @@
                         <input ng-model="task.estimatedHours" type="number" ng-required="number" class="form-control" placeholder="Worked (hrs)">
                     </td>
                     <td>
-                        <select ng-model="task.status">
-                            <option ng-repeat="status in statuses track by status" value="{{status}}">{{status}}
-                            </option>
+                        <select ng-model="task.status" ng-options="status as status for status in statuses">
                         </select>
                     </td>
                     <td>
