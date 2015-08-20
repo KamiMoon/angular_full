@@ -1,0 +1,72 @@
+.track {
+	width: 100%;
+	height: 20px;
+	background-color: grey;
+}
+
+.train {
+	margin-left: 0%;
+	-webkit-transition: margin-left 2s;
+	display: inline-block;
+}
+
+.trans_train_forward {
+	margin-left: 40%;
+}
+
+.locomotive {
+	width: 120px;
+	height: 50px;
+	background-color: red;
+	margin-left: 2px;
+	display: inline-block;
+}
+
+.locomotiveWheels {
+	width: 120px;
+	height: 10px;
+	background-color: black;
+}
+
+.railcar {
+	margin-left: 2px;
+	display: inline-block;
+}
+
+.well {
+	border: 1px solid green;
+	width: 100px;
+	height: 60px;
+	display: inline-block;
+}
+
+.wellWheels {
+	width: 100px;
+	height: 10px;
+	background-color: black;
+}
+
+.container {
+	width: 94px;
+	height: 20px;
+	margin: 2px;
+	background-color: yellow;
+	border: 1px solid black;
+	-webkit-transition: 2s;
+}
+
+.emptyContainer{
+	background-color: white;
+}
+
+.trans_container{
+	background-color: red;
+}
+
+#actionGroupbox {
+	border: 2px solid;
+	background-color: orange;
+	border-radius: 18px;
+	padding: 10px;
+	width: 25%;
+}
