@@ -12,7 +12,7 @@ exports.createConfirmationEmail = function(req, user) {
 
         var linkAddress = 'http://' + host + '/api/users/activate/' + encodeURIComponent(user._id) + '/' + encodeURIComponent(user.activationHash);
 
-        var body = 'Welcome, <br/>You are registered for Preserve US. <br/><br/>';
+        var body = 'Welcome, <br/>You are registered for erickizaki.com. <br/><br/>';
         body += 'To activate your account click this link: <a href="' + linkAddress + '">Activate Account</a>';
 
         var mailOptions = {
@@ -34,7 +34,7 @@ exports.createConfirmationEmail = function(req, user) {
 
 exports.createReceiptEmail = function(receipt) {
     var body = 'Thank you. <br><br>';
-    body += 'Your purchase has been processed with Preserve US LLC. Here is a receipt: <br><br>';
+    body += 'Your purchase has been processed with erickizaki.com. Here is a receipt: <br><br>';
 
     body += '<table border="1">';
     body += '<tr>'
