@@ -3,6 +3,7 @@
 angular.module('angularFullApp')
     .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
         var currentUser = {};
+
         if ($cookieStore.get('token')) {
             currentUser = User.get();
         }
@@ -109,8 +110,7 @@ angular.module('angularFullApp')
              * @return {Boolean}
              */
             isLoggedIn: function() {
-                //return currentUser.hasOwnProperty('role');
-                return true;
+                return currentUser.hasOwnProperty('roles');
             },
 
             /**
@@ -123,7 +123,7 @@ angular.module('angularFullApp')
                     }).catch(function() {
                         cb(false);
                     });
-                } else if (currentUser.hasOwnProperty('role')) {
+                } else if (currentUser.hasOwnProperty('roles')) {
                     cb(true);
                 } else {
                     cb(false);
@@ -136,7 +136,123 @@ angular.module('angularFullApp')
              * @return {Boolean}
              */
             isAdmin: function() {
-                return currentUser.role === 'admin';
+                if (!currentUser.roles) {
+                    return false;
+                }
+
+                var pos = currentUser.roles.map(function(e) {
+                    return e.role;
+                }).indexOf('admin');
+
+                return pos !== -1;
+            },
+
+            hasRole: function(role) {
+                if (!currentUser.roles) {
+                    return false;
+                }
+
+                var pos = currentUser.roles.map(function(e) {
+                    return e.role;
+                }).indexOf(role);
+
+                return pos !== -1;
+            },
+
+            hasRoles: function(roles) {
+                var hadAny = false;
+
+                if (!currentUser.roles) {
+                    return false;
+                }
+
+                for (var i = 0; i < roles.length; i++) {
+
+                    var pos = currentUser.roles.map(function(e) {
+                        return e.role;
+                    }).indexOf(roles[i]);
+
+                    if (pos !== -1) {
+                        hadAny = true;
+                        break;
+                    }
+                }
+
+                return hadAny;
+            },
+
+            isOrgAdminFor: function(organizationId, primaryOnly) {
+                if (!currentUser.roles) {
+                    return false;
+                }
+
+                var hasCorrectRole = false;
+
+                for (var i = 0; i < currentUser.roles.length; i++) {
+                    var currentRole = currentUser.roles[i];
+
+                    if (currentRole.role === 'admin') {
+                        hasCorrectRole = true;
+                        break;
+                    }
+
+                    if (!primaryOnly && (currentRole.role === 'Organization Admin Primary' || currentRole.role === 'Organization Admin Secondary') && currentRole.organization_id === organizationId) {
+                        hasCorrectRole = true;
+                        break;
+                    }
+
+                    if (primaryOnly && (currentRole.role === 'Organization Admin Primary') && currentRole.organization_id === organizationId) {
+                        hasCorrectRole = true;
+                        break;
+                    }
+                }
+
+                return hasCorrectRole;
+            },
+
+            isMemberOf: function(organizationId) {
+                if (!currentUser.roles) {
+                    return false;
+                }
+
+                var hasCorrectRole = false;
+
+                for (var i = 0; i < currentUser.roles.length; i++) {
+                    var currentRole = currentUser.roles[i];
+
+                    if ((currentRole.role === 'Organization Admin Primary' || currentRole.role === 'Organization Admin Secondary' || currentRole.role === 'Member') && currentRole.organization_id === organizationId) {
+                        hasCorrectRole = true;
+                        break;
+                    }
+                }
+
+                return hasCorrectRole;
+            },
+
+            isOrgAdmin: function() {
+                if (!currentUser.roles) {
+                    return false;
+                }
+
+                var hasCorrectRole = false;
+
+                for (var i = 0; i < currentUser.roles.length; i++) {
+                    var currentRole = currentUser.roles[i];
+                    if ((currentRole.role === 'Organization Admin Primary' || currentRole.role === 'Organization Admin Secondary' || currentRole.role === 'admin')) {
+                        hasCorrectRole = true;
+                        break;
+                    }
+                }
+
+                return hasCorrectRole;
+            },
+
+            isMine: function(userId) {
+                if (!currentUser || !userId) {
+                    return false;
+                }
+
+                return currentUser._id === userId;
             },
 
             /**
@@ -144,6 +260,10 @@ angular.module('angularFullApp')
              */
             getToken: function() {
                 return $cookieStore.get('token');
+            },
+
+            getUser: function() {
+                return User.get();
             }
         };
     });

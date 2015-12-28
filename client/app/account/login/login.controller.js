@@ -1,29 +1,32 @@
 'use strict';
 
 angular.module('angularFullApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
-    $scope.user = {};
-    $scope.errors = {};
+    .controller('LoginCtrl', function($scope, Auth, $location, $window, ValidationService) {
+        $scope.user = {};
 
-    $scope.login = function(form) {
-      $scope.submitted = true;
+        $scope.login = function(form) {
+            $scope.submitted = true;
 
-      if(form.$valid) {
-        Auth.login({
-          email: $scope.user.email,
-          password: $scope.user.password
-        })
-        .then( function() {
-          // Logged in, redirect to home
-          $location.path('/');
-        })
-        .catch( function(err) {
-          $scope.errors.other = err.message;
-        });
-      }
-    };
+            if (form.$valid) {
+                Auth.login({
+                        email: $scope.user.email,
+                        password: $scope.user.password
+                    })
+                    .then(function() {
+                        ValidationService.success('Logged In');
+                        // Logged in, redirect to home
+                        Auth.getUser().$promise.then(function(user) {
+                            $location.path('/profile/' + user._id);
+                        });
 
-    $scope.loginOauth = function(provider) {
-      $window.location.href = '/auth/' + provider;
-    };
-  });
+                    })
+                    .catch(function(err) {
+                        ValidationService.error(err.message);
+                    });
+            }
+        };
+
+        $scope.loginOauth = function(provider) {
+            $window.location.href = '/auth/' + provider;
+        };
+    });

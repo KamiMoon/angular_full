@@ -1,4 +1,3 @@
-
 /**
  * Bootstrap Fonts
  */
@@ -6,11 +5,9 @@
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
-    src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
-    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
-    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+    src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
 
 /**
  *Font Awesome Fonts
@@ -19,13 +16,11 @@
 @font-face {
     font-family: 'FontAwesome';
     src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.1.0');
-    src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
-    url('../bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'),
-    url('../bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
-    url('../bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+    src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'), url('../bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'), url('../bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'), url('../bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 
 /**
  * App-wide Styles
@@ -36,4 +31,438 @@
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato", "Helvetica Neue", "Helvetica, Arial", "sans-serif";
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+/*
+body {
+    margin-bottom: 290px;
+}
+
+body > .container-fluid {
+    padding: 60px 15px 0;
+}*/
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.intro-header {
+    /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url("/assets/images/brick.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+#main-container {
+    padding-top: 50px;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 300px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+/*
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}*/
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+#main-logo {
+    font-family: "Playfair Display SC";
+    color: gold;
+    font-size: 70px;
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+@media(max-width:480px) {
+    #main-logo {
+        font-size: 60px;
+    }
+}
+
+.mission-statement {
+    color: gold;
+    border: none;
+    font-family: "Playfair Display SC";
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 400px) {
+    .mission-statement {
+        font-size: 25px;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: rgba(248, 248, 248, 0.15);
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+    margin-top: 0px;
+}
+
+.section-heading-spacer {
+    border-top: 6px solid rgba(14, 13, 13, 0.8);
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    font-size: 3em;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+        font-size: 3em;
+    }
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+
+/* custom overrides */
+
+.navbar-default .navbar-nav>li>a {
+    /*padding-top: 14px;*/
+    color: #9E9E9E;
+    cursor: pointer;
+    border-color: #393232;
+    border-style: solid;
+    border-width: 5px;
+    font-size: 20px;
+}
+
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border-width: 5px;
+}
+
+.navbar-default {
+    /*background: rgba(10, 10, 10, 0.9);*/
+    -webkit-font-smoothing: antialiased;
+    background: #393232;
+    opacity: 0.85;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    color: #B79746 !important;
+    padding-left: 45px;
+    margin-left: 10px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
+    padding-top: 18px;
+}
+
+@media(max-width:480px) {
+    .navbar-brand {
+        margin-left: 0px;
+        font-size: 25px;
+    }
+}
+
+#footer {
+    /*position: absolute;
+bottom: 0;
+*/
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    -webkit-font-smoothing: antialiased;
+    font-size: 20px;
+    color: #B79746;
+    background: black;
+    opacity: 0.90;
+    font-weight: 700;
+}
+
+#footer h3 {
+    color: white;
+    text-decoration: underline;
+}
+
+#footer a {
+    text-decoration: none;
+    color: #9E9E9E;
+}
+
+#footer a:hover {
+    color: white;
+}
+
+#footer ul,
+#footer li {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.btn-facebook {
+    color: #fff;
+    background-color: #3B5998;
+    border-color: #133783;
+}
+
+.btn-google-plus {
+    color: #fff;
+    background-color: #dd4b39;
+    border-color: #c53727;
+}
+
+.btn-github {
+    color: #fff;
+    background-color: #fafafa;
+    border-color: #ccc;
+}
+
+.trash {
+    color: rgb(209, 91, 71);
+}
+
+.team-pic {
+    width: 300px;
+    height: 300px;
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 75%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+}
+
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#go-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    text-indent: -999em;
+    /* Hide text */
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-image: url("/assets/images/back-to-top.png");
+    padding: 0;
+    height: 50px;
+    width: 50px;
+    opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    z-index: 999;
+    display: none;
+    -webkit-transition: opacity 0.4s ease-in-out 0s;
+    -moz-transition: opacity 0.4s ease-in-out 0s;
+    transition: opacity 0.4s ease-in-out 0s;
+}
+
+#go-to-top:hover {
+    opacity: 0.9;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=90);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+@media only screen and (max-width: 767px) {
+    #go-to-top {
+        height: 40px;
+        width: 40px;
+        background-size: cover;
+    }
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.navbar-fixed-bottom .navbar-collapse,
+.navbar-fixed-top .navbar-collapse {
+    max-height: 400px;
+}
+
+#navcontainer {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+#footer-author {
+    padding-left: 15px;
+}
+
+legend {
+    text-align: center;
+}
+
+.img-blog {
+    width: 150px;
+    height: 150px;
+}
+
+.img-property {
+    width: 100px;
+    height: 100px;
+}
+
+.map-window {
+    width: 300px;
+}
+
+.file-upload-progress {
+    width: 100px;
+    margin-bottom: 0px;
+}
+
+.img-upload-container {
+    border-width: 1px;
+    border-radius: 4px 4px 0 0;
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+}
+
+
+/* Collapse the navbar sooner */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse,
+    .navbar-toggle {
+        display: block !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+}
+
+.contact-info {
+    font-size: 1.375em;
+    text-transform: uppercase;
+}
+
+.portfolio-image {
+    width: 300px;
+    height: 300px;
 }

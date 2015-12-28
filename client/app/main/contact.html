@@ -1,0 +1,48 @@
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form name="form" ng-submit="save(form)" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-10">
+                                    <h3>CONTACT ME</h3>
+                                </div>
+                            </div>
+                            <b-input model="contact.name" required="true"></b-input>
+                            <b-input type="email" model="contact.email" required="true"></b-input>
+                            <b-input type="textarea" rows="6" cols="5" model="contact.message" required="true"></b-input>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label"></label>
+                                <div class="col-lg-10">
+                                    <div vc-recaptcha key="'6LdS5BMTAAAAACcWJA-nZhB34kFMfM5Rfyu6RrAV'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div align="center">
+                            <b-input type="submit" label="SEND ME THE MESSAGE"></b-input>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="contact-info text-center">
+                <h3></h3>
+                <p style="text-decoration:underline"><b>Main Office</b></p>
+                </p>
+                <p><a href="mailto:erickizaki@gmail.com">erickizaki@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+</div>

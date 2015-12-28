@@ -1,0 +1,54 @@
+<div id="blog-container" class="container-fluid">
+    <div class="row" ng-if="Auth.hasRoles(['admin', 'blogger'])">
+        <div class="col-md-12">
+            <a href="/blog/add/1" class="btn btn-default btn-lg" role="button">Add Post</a>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9" id="blog-column">
+            <article ng-repeat="post in posts">
+                <!-- <blog-post post="post"></blog-post> -->
+                <div class="media">
+                    <div class="media-left">
+                        <a href="/blog/{{post._id}}">
+                            <b-img public-id="{{post.photo}}" transformation="w_150,h_150,c_fill" alt="{{post.title}}" class="media-object"></b-img>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="/blog/{{post._id}}"><h3 class="media-heading">{{::post.title}}</h3></a>
+                        <ul>
+                            <li itemprop="author" itemscope itemtype="https://schema.org/Person" ng-if="post.user_name">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By <span itemprop="name">{{::post.user_name}}</span>
+                            </li>
+                            <li id="datePublished" class="date">
+                                <meta itemprop="datePublished" content="{{::post.createdAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ'}}" />
+                                <meta itemprop="dateModified" content="{{::post.updatedAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ'}}" />
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{::post.createdAt | date:'MM/dd/yyyy'}}
+                            </li>
+                            <li class="tags" property="keywords" ng-if="post.keywords.length">
+                                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                                <a ng-repeat="keyword in post.keywords" class="btn btn-default btn-sm keywords" href="/blogKeyword
+/{{keyword.text}}">{{::keyword.text}}</a>
+                            </li>
+                            <!-- <li class="comments" property="discussionUrl">
+    <button class="btn btn-primary" type="button">
+        Comments <span class="badge">4</span>
+    </button>
+</li>
+ -->
+                        </ul>
+                        <p ng-bind="post.headingQuote" class="post-preview-html">
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </article>
+        </div>
+        <div class="col-md-3">
+            <blog-keywords></blog-keywords>
+        </div>
+    </div>
+</div>

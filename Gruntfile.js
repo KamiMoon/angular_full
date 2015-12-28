@@ -93,7 +93,7 @@ module.exports = function(grunt) {
                     '!{.tmp,<%= yeoman.client %>}{app,components}/**/*.spec.js',
                     '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js',
                     '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
-                    '<%= yeoman.client %>/css3presentation/{,*//*}*',
+                    '<%= yeoman.client %>/presentations/{,*//*}*',
                     '<%= yeoman.client %>/threejslot/{,*//*}*'
                 ],
                 options: {
@@ -217,7 +217,7 @@ module.exports = function(grunt) {
             target: {
                 src: '<%= yeoman.client %>/index.html',
                 ignorePath: '<%= yeoman.client %>/',
-                exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/']
+                exclude: [/bootstrap-sass-official/, '/json3/', '/es5-shim/']
             }
         },
 
@@ -348,10 +348,12 @@ module.exports = function(grunt) {
                     src: [
                         '*.{ico,png,txt}',
                         '.htaccess',
+                        'sitemap.xml',
                         'bower_components/**/*',
                         'assets/images/{,*/}*.{webp}',
+                        'assets/styles/{,*/}*.css',
                         'assets/fonts/**/*',
-                        'css3presentation/**/*',
+                        'presentations/**/*',
                         'threejslot/**/*',
                         'index.html'
                     ]
@@ -373,7 +375,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: '<%= yeoman.client %>',
                 dest: '.tmp/',
-                src: ['{app,components}/**/*.css']
+                src: ['{app,components}/**/*.css', ]
             }
         },
 
@@ -474,7 +476,8 @@ module.exports = function(grunt) {
                 files: {
                     '<%= yeoman.client %>/index.html': [
                         [
-
+                            '{.tmp,<%= yeoman.client %>}/assets/cloudinary/jquery.cloudinary.js',
+                            '{.tmp,<%= yeoman.client %>}/assets/cloudinary/angular.cloudinary.js',
                             '{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
 
                             '!{.tmp,<%= yeoman.client %>}/app/app.js',
