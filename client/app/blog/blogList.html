@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9" id="blog-column">
+        <div class="col-md-9">
             <article ng-repeat="post in posts">
                 <!-- <blog-post post="post"></blog-post> -->
                 <div class="media">
@@ -17,8 +17,8 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <a href="/blog/{{post._id}}"><h3 class="media-heading">{{::post.title}}</h3></a>
-                        <ul>
+                        <a href="/blog/{{post._id}}" class="media-heading post-preview-title">{{::post.title}}</a>
+                        <ul class="blog-meta-list">
                             <li itemprop="author" itemscope itemtype="https://schema.org/Person" ng-if="post.user_name">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By <span itemprop="name">{{::post.user_name}}</span>
                             </li>

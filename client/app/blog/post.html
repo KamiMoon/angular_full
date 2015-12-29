@@ -1,11 +1,9 @@
 <div class="panel panel-default">
     <article itemscope itemtype="http://schema.org/NewsArticle" class="panel-body">
         <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="{{seo.url}}" />
-        <h1>
-        <a itemprop="headline" href="blog/{{post._id}}" rel="bookmark" title="{{::post.title}}">{{::post.title}}</a>
-    </h1>
+        <a itemprop="headline" href="blog/{{post._id}}" rel="bookmark" class="post-title" title="{{::post.title}}">{{::post.title}}</a>
         <hr>
-        <ul>
+        <ul class="blog-meta-list">
             <li itemprop="author" itemscope itemtype="https://schema.org/Person" ng-if="post.user_name">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> By <span itemprop="name">{{::post.user_name}}</span>
             </li>

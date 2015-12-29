@@ -9,7 +9,9 @@ angular.module('angularFullApp')
 
                 $timeout(function() {
                     $timeout(function() {
-                        $(element).find('pre code').each(function(i, block) {
+
+                        //code highlighting
+                        element.find('code').each(function(i, block) {
                             hljs.highlightBlock(block);
                         });
                     });

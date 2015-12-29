@@ -506,6 +506,14 @@ module.exports = function(grunt) {
                 }
             }
         },
+
+        uglify: {
+            options: {
+                mangle: {
+                    except: ['jQuery']
+                }
+            }
+        }
     });
 
     // Used for delaying livereload until after server has restarted
@@ -605,7 +613,7 @@ module.exports = function(grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
-        'cdnify',
+        //'cdnify',
         'cssmin',
         'uglify',
         'rev',

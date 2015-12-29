@@ -1,15 +1,15 @@
-#blog-column article li {
+.blog-meta-list li {
     color: rgba(0, 0, 0, .3);
     display: inline-block;
     padding-right: 2em;
 }
 
-#blog-column .keywords {
+.blog-meta-list .keywords {
     margin-left: 20px;
 }
 
 @media(max-width:767px) {
-    #blog-column article li {
+    .blog-meta-list li {
         display: block;
         margin-top: 15px;
     }
@@ -20,6 +20,10 @@
     border: none;
 }
 
+.post-html li {
+    font-size: 18px;
+}
+
 #blog-container {
     width: 96%;
 }
@@ -28,4 +32,14 @@
     font-weight: normal;
     font-size: 18px;
     margin-bottom: 36px;
+}
+
+.post-preview-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.post-title {
+    font-size: 36px;
+    font-weight: 700;
 }
