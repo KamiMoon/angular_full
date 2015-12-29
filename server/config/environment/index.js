@@ -4,6 +4,12 @@ var path = require('path');
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
 var request = require('request');
+var Mailgun = require('mailgun-js');
+
+var mailgun = new Mailgun({
+    apiKey: process.env.MAILGUN_API_KEY,
+    domain: process.env.MAILGUN_DOMAIN
+});
 
 
 function requiredProcessEnv(name) {
@@ -109,7 +115,13 @@ var all = {
     },
 
     transporter: transporter,
-    verifyRecaptcha: verifyRecaptcha
+    verifyRecaptcha: verifyRecaptcha,
+
+    mailgun: {
+        mailgun: mailgun,
+        MAILGUN_BLOG_MAILING_LIST: process.env.MAILGUN_BLOG_MAILING_LIST,
+        MAILGUN_FROM: process.env.MAILGUN_FROM
+    }
 
 };
 

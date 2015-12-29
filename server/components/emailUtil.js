@@ -64,3 +64,35 @@ exports.createReceiptEmail = function(receipt) {
 
 
 };
+
+
+exports.subscribe = function(email, callback) {
+    var mailgun = config.mailgun.mailgun;
+
+    var members = [{
+        address: email
+    }];
+
+    mailgun.lists(config.mailgun.MAILGUN_BLOG_MAILING_LIST).members().add({
+        members: members,
+        subscribed: true
+    }, function(err, body) {
+        if (err) {
+            return callback(err);
+        }
+
+        return callback(err, 'Added to mailing list');
+    });
+};
+
+exports.unsubscribe = function(email, callback) {
+    var mailgun = config.mailgun.mailgun;
+
+    mailgun.lists(config.mailgun.MAILGUN_BLOG_MAILING_LIST).members(email).delete(function(err, body) {
+        if (err) {
+            return callback(err);
+        }
+
+        return callback(err, 'Removed from mailing list');
+    });
+};
