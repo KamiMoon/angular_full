@@ -124,7 +124,7 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
         prettifyHtml: false
     };
 
-}).controller('BlogViewCtrl', function($scope, SEOService, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil) {
+}).controller('BlogViewCtrl', function($scope, SEOService, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil, $http) {
 
     var id = $stateParams.id;
     $scope.contentLoaded = false;
@@ -145,6 +145,12 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
 
     $scope.delete = function() {
         ControllerUtil.delete(id, BlogService, '/blog');
+    };
+
+    $scope.publishToMailingList = function(id) {
+        $http.get('/api/blog/publish/' + id).then(function(results) {
+            ValidationService.success('Article Published.');
+        });
     };
 
 });

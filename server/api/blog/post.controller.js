@@ -2,7 +2,19 @@
 
 var Post = require('./post.model');
 var ControllerUtil = require('../../components/controllerUtil');
+var EmailUtil = require('../../components/emailUtil');
 
+exports.getMailListTotal = function(req, res) {
+
+    EmailUtil.getMailListTotal(function(err, total) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        return res.json(total);
+    });
+
+};
 
 exports.keywords = function(req, res) {
 
@@ -84,4 +96,50 @@ exports.destroy = function(req, res) {
             return res.status(204).send('No Content');
         });
     });
+};
+
+exports.subscribe = function(req, res) {
+
+    EmailUtil.subscribe(req.params.email, function(err, body) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        return res.json('Added to mailing list');
+    });
+
+};
+
+exports.unsubscribe = function(req, res) {
+
+    EmailUtil.unsubscribe(req.params.email, function(err, body) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        return res.json('Removed from mailing list');
+    });
+
+};
+
+exports.publish = function(req, res) {
+
+    Post.findById(req.params.id).exec(function(err, post) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+        if (!post) {
+            return res.status(404).send('Not Found');
+        }
+
+        EmailUtil.publishPost(post, function(err, body) {
+            if (err) {
+                return ControllerUtil.handleError(res, err);
+            }
+
+            return res.json('Published to mailing list');
+        });
+
+    });
+
 };

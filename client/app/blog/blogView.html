@@ -11,6 +11,9 @@
                 <br>
                 <a ng-click="delete(post._id)" class="btn btn-default btn-lg" role="button">Delete</a>
                 <br>
+                <br>
+                <a ng-click="publishToMailingList(post._id)" class="btn btn-default btn-lg" role="button">Publish to Mailing List</a>
+                <br>
             </div>
             <br>
             <blog-post post="post" ng-if="contentLoaded"></blog-post>
@@ -18,6 +21,7 @@
             </dir-disqus>
         </div>
         <div class="col-md-3">
+            <blog-follow></blog-follow>
             <blog-keywords></blog-keywords>
         </div>
     </div>

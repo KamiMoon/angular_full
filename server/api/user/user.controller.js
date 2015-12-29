@@ -40,11 +40,16 @@ exports.create = function(req, res, next) {
             });
 
             //create an email with the activation hash in it
-            EmailUtil.createConfirmationEmail(req, user);
+            EmailUtil.createConfirmationEmail(req, user, function(err, result) {
+                if (error) {
+                    return ControllerUtil.handleError(res, 'Invalid Email');
+                }
 
-            res.json({
-                token: token
+                res.json({
+                    token: token
+                });
             });
+
         });
     });
 

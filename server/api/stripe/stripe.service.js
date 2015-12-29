@@ -37,7 +37,9 @@ function chargeCustomer(receipt, callback) {
             console.log('Created Receipt');
             console.log(createdReceipt);
             //send receipt email
-            EmailUtil.createReceiptEmail(createdReceipt);
+            EmailUtil.createReceiptEmail(createdReceipt, function() {
+                //who cares
+            });
 
             return callback(err, createdReceipt);
         });

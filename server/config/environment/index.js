@@ -117,11 +117,7 @@ var all = {
     transporter: transporter,
     verifyRecaptcha: verifyRecaptcha,
 
-    mailgun: {
-        mailgun: mailgun,
-        MAILGUN_BLOG_MAILING_LIST: process.env.MAILGUN_BLOG_MAILING_LIST,
-        MAILGUN_FROM: process.env.MAILGUN_FROM
-    }
+    mailgun: mailgun
 
 };
 
