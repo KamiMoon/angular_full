@@ -27,17 +27,16 @@
                                 <meta itemprop="dateModified" content="{{::post.updatedAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ'}}" />
                                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{::post.createdAt | date:'MM/dd/yyyy'}}
                             </li>
+                            <li class="comments" property="discussionUrl">
+                                <a href="/blog/{{post._id}}" class="btn btn-primary" type="button">
+                 Comments  <span class="badge disqus-comment-count" data-disqus-url="http://www.erickizaki.com/blog/{{post._id}}"></span>
+                </a>
+                            </li>
                             <li class="tags" property="keywords" ng-if="post.keywords.length">
                                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
                                 <a ng-repeat="keyword in post.keywords" ng-class="{'active': searchParams['keywords.text'] === keyword.text}" class="btn btn-default btn-sm keywords" href="/blogKeyword
 /{{keyword.text}}">{{::keyword.text}}</a>
                             </li>
-                            <!-- <li class="comments" property="discussionUrl">
-    <button class="btn btn-primary" type="button">
-        Comments <span class="badge">4</span>
-    </button>
-</li>
- -->
                         </ul>
                         <p ng-bind="post.headingQuote" class="post-preview-html">
                         </p>

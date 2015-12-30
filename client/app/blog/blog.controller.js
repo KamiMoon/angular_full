@@ -1,6 +1,21 @@
 'use strict';
 
-angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateParams, BlogService) {
+
+var loadCommentCount = function() {
+    window.disqus_shortname = 'erickizakicom';
+
+    if (!window.DISQUSWIDGETS) {
+        $('head').append('<script id="dsq-count-scr" src="//erickizakicom.disqus.com/count.js?" async></script>');
+    } else {
+        window.DISQUSWIDGETS.getCount({
+            reset: true
+
+        });
+    }
+};
+
+
+angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateParams, BlogService, $timeout) {
 
     $scope.searchParams = {
         page: 1,
@@ -21,6 +36,13 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
             $scope.searchParams.page = postWrapper.paging.page;
             $scope.searchParams.itemsPerPage = postWrapper.paging.itemsPerPage;
             $scope.searchParams.totalItems = postWrapper.paging.totalItems;
+
+            $timeout(function() {
+                $timeout(function() {
+                    loadCommentCount();
+                });
+            });
+
         });
     };
 
@@ -144,7 +166,7 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
         prettifyHtml: false
     };
 
-}).controller('BlogViewCtrl', function($scope, SEOService, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil, $http) {
+}).controller('BlogViewCtrl', function($scope, SEOService, $timeout, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil, $http) {
 
     var id = $stateParams.id;
     $scope.contentLoaded = false;
@@ -160,6 +182,12 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
             description: post.headingQuote,
             author: post.user_name,
             image: post.photo
+        });
+
+        $timeout(function() {
+            $timeout(function() {
+                loadCommentCount();
+            });
         });
     });
 
