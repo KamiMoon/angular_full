@@ -2,14 +2,33 @@
 
 angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateParams, BlogService) {
 
-    var searchParams = {};
+    $scope.searchParams = {
+        page: 1,
+        itemsPerPage: 10,
+        totalItems: 0
+    };
 
     if ($stateParams.keyword) {
-        searchParams['keywords.text'] = $stateParams.keyword;
-        $scope.keyword = $stateParams.keyword;
+        $scope.searchParams['keywords.text'] = $stateParams.keyword;
     }
 
-    $scope.posts = BlogService.query(searchParams);
+    //paging https://angular-ui.github.io/bootstrap/#/pagination
+    var runQuery = function() {
+
+        BlogService.query($scope.searchParams).$promise.then(function(postWrapper) {
+            $scope.posts = postWrapper.posts;
+
+            $scope.searchParams.page = postWrapper.paging.page;
+            $scope.searchParams.itemsPerPage = postWrapper.paging.itemsPerPage;
+            $scope.searchParams.totalItems = postWrapper.paging.totalItems;
+        });
+    };
+
+    $scope.pageChanged = function() {
+        runQuery();
+    };
+
+    runQuery();
 
 }).controller('BlogAddEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService, Auth, Upload, ControllerUtil, $http) {
     var action = $stateParams.action;

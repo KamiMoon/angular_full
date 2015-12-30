@@ -52,9 +52,60 @@ exports.keywords = function(req, res) {
 
 // Get list of events
 exports.index = function(req, res) {
-    ControllerUtil.find(req, res, Post, {}, {
+    var query = ControllerUtil.getQuery(req);
+    //remove page out of there
+    delete query.page;
+    delete query.itemsPerPage;
+    delete query.totalItems;
+
+    var projection = {};
+    var sort = {
         'createdAt': -1
+    };
+
+    var paging = {
+        page: req.query.page,
+        itemsPerPage: req.query.itemsPerPage,
+        totalItems: null
+    }
+
+    var cursor = Post.find(query, projection).sort(sort);
+
+    if (paging.page) {
+        var limit = paging.itemsPerPage || 10;
+        var page = (Math.abs(paging.page) || 1) - 1;
+        var skip = limit * page;
+
+        cursor.limit(limit).skip(skip);
+    }
+
+    cursor.lean().exec(function(err, posts) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        var result = {
+            posts: posts,
+            paging: paging
+        };
+
+        if (paging.page) {
+            //we need to get the total for the purposes of paging
+
+            Post.count(query).lean().exec(function(err, count) {
+
+                result.paging.totalItems = count;
+
+                return res.status(200).json(result);
+            });
+
+
+        } else {
+            return res.status(200).json(result);
+        }
+
     });
+
 };
 
 // Get a single event

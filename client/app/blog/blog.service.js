@@ -7,6 +7,9 @@ angular.module('angularFullApp')
         }, {
             update: {
                 method: 'PUT'
+            },
+            query: {
+                isArray: false
             }
         });
     });

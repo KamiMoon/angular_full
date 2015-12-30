@@ -29,7 +29,7 @@
                             </li>
                             <li class="tags" property="keywords" ng-if="post.keywords.length">
                                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
-                                <a ng-repeat="keyword in post.keywords" ng-class="{'active': $parent.keyword && $parent.keyword === keyword.text}" class="btn btn-default btn-sm keywords" href="/blogKeyword
+                                <a ng-repeat="keyword in post.keywords" ng-class="{'active': searchParams['keywords.text'] === keyword.text}" class="btn btn-default btn-sm keywords" href="/blogKeyword
 /{{keyword.text}}">{{::keyword.text}}</a>
                             </li>
                             <!-- <li class="comments" property="discussionUrl">
@@ -46,11 +46,13 @@
                 <br>
                 <br>
             </article>
+            <!-- https://angular-ui.github.io/bootstrap/#/pagination -->
+            <uib-pagination boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" total-items="searchParams.totalItems" ng-model="searchParams.page" items-per-page="searchParams.itemsPerPage" ng-change="pageChanged()" class="pagination-lg"></uib-pagination>
         </div>
         <div class="col-md-3">
             <blog-social></blog-social>
             <blog-follow></blog-follow>
-            <blog-keywords keyword="{{keyword}}"></blog-keywords>
+            <blog-keywords keyword="{{searchParams['keywords.text']}}"></blog-keywords>
         </div>
     </div>
 </div>
