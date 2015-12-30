@@ -1,8 +1,6 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Tags</div>
     <div class="panel-body">
-        <div class="list-group" ng-repeat="keyword in keywords">
-            <a class="list-group-item" href="/blogKeyword/{{keyword._id}}">{{::keyword._id}}</a>
-        </div>
+        <a ng-repeat="keyword in keywords" ng-class="{'active': keyword.active}" class="btn btn-default btn-sm blog-keyword-button" href="/blogKeyword/{{keyword._id}}">{{::keyword._id}}</a>
     </div>
 </div>

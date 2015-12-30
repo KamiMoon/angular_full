@@ -6,6 +6,7 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
 
     if ($stateParams.keyword) {
         searchParams['keywords.text'] = $stateParams.keyword;
+        $scope.keyword = $stateParams.keyword;
     }
 
     $scope.posts = BlogService.query(searchParams);

@@ -43,3 +43,16 @@
     font-size: 36px;
     font-weight: 700;
 }
+
+.blog-social-links {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.blog-social-links li {
+    display: inline-block;
+}
+
+.blog-keyword-button {
+    margin: 10px;
+}

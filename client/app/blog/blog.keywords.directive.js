@@ -5,9 +5,23 @@ angular.module('angularFullApp')
         return {
             templateUrl: 'app/blog/blog.keywords.html',
             restrict: 'E',
-            link: function postLink(scope, element, attrs) {
+            scope: {
+                keyword: '@'
+            },
+            link: function postLink($scope, $element, attrs) {
                 $http.get('/api/blog/keywords').then(function(results) {
-                    scope.keywords = results.data;
+
+                    //highlight
+                    if ($scope.keyword) {
+                        for (var i = 0; i < results.data.length; i++) {
+                            if ($scope.keyword === results.data[i]._id) {
+                                results.data[i].active = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    $scope.keywords = results.data;
                 });
             }
         };
