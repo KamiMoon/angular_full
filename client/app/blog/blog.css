@@ -13,6 +13,9 @@
         display: block;
         margin-top: 15px;
     }
+    .blog-meta-list .keywords {
+        margin-bottom: 20px;
+    }
 }
 
 .post-html pre {

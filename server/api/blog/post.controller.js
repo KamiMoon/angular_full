@@ -34,7 +34,10 @@ exports.keywords = function(req, res) {
 
     aggregationPipeline.push({
         '$group': {
-            '_id': '$keywords.text'
+            '_id': '$keywords.text',
+            'total': {
+                $sum: 1
+            }
         }
     }, {
         '$sort': {
@@ -47,6 +50,20 @@ exports.keywords = function(req, res) {
             return ControllerUtil.handleError(res, err);
         }
         return res.json(keywords);
+    });
+};
+
+exports.list = function(req, res) {
+    Post.find({}, {
+        title: true
+    }).sort({
+        'createdAt': -1
+    }).lean().exec(function(err, posts) {
+        if (err) {
+            return ControllerUtil.handleError(res, err);
+        }
+
+        return res.status(200).json(posts);
     });
 };
 

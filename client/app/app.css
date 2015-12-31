@@ -248,7 +248,7 @@ p.copyright {
     /*background: rgba(10, 10, 10, 0.9);*/
     -webkit-font-smoothing: antialiased;
     background: #393232;
-    opacity: 0.85;
+    opacity: 0.90;
 }
 
 .navbar-brand {
@@ -265,6 +265,25 @@ p.copyright {
     .navbar-brand {
         margin-left: 0px;
         font-size: 25px;
+    }
+    .navbar-default {
+        opacity: 1.0;
+    }
+}
+
+.navbar-default .dropdown-menu>li>a:hover {
+    background: red;
+}
+
+.navbar-default .dropdown-menu>li>a {
+    font-size: 18px;
+    background: white;
+    opacity: 1;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+        background: red;
     }
 }
 

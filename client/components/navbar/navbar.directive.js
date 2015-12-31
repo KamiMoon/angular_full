@@ -35,7 +35,7 @@ angular.module('angularFullApp')
                     $anchorScroll();
                 };
 
-                $(".navbar-nav li a").click(function(event) {
+                $(".navbar-nav li:not(.dropdown) a").click(function(event) {
                     var navbarCollapse = $(".navbar-collapse");
 
                     navbarCollapse.collapse('hide');

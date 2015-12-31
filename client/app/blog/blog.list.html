@@ -1,0 +1,8 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Posts</div>
+    <div class="panel-body">
+        <div class="list-group">
+            <a href="/blog/{{::post._id}}" ng-repeat="post in posts" ng-class="{'active': current === post._id}" class="list-group-item">{{::post.title}}</a>
+        </div>
+    </div>
+</div>
