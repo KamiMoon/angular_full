@@ -18,6 +18,13 @@
     }
 }
 
+@media(max-width:480px) {
+    .media-body {
+        display: block;
+        width: 100%;
+    }
+}
+
 .post-html pre {
     background-color: white;
     border: none;
