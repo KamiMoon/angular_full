@@ -131,9 +131,7 @@ exports.show = function(req, res) {
         if (err) {
             return ControllerUtil.handleError(res, err);
         }
-        if (!event) {
-            return res.status(404).send('Not Found');
-        }
+
         return res.json(event);
     });
 };
