@@ -4,16 +4,16 @@ var should = require('should');
 var app = require('../../app');
 var Post = require('./post.model');
 
-var user = new Post({
+var post = new Post({
     provider: 'local',
-    name: 'Fake Post',
-    email: 'test@test.com',
-    password: 'password'
+    title: 'Some Blog Post',
+    postHtml: 'Some post html',
+    headingQuote: 'Some heading'
 });
 
 describe('Post Model', function() {
     before(function(done) {
-        // Clear users before testing
+        // Clear posts before testing
         Post.remove().exec().then(function() {
             done();
         });
@@ -32,29 +32,27 @@ describe('Post Model', function() {
         });
     });
 
-    xit('should fail when saving a duplicate user', function(done) {
-        user.save(function() {
-            var userDup = new Post(user);
-            userDup.save(function(err) {
+    it('should fail when saving a duplicate post', function(done) {
+        post.save(function() {
+            var postDup = new Post(post);
+            postDup.save(function(err) {
                 should.exist(err);
                 done();
             });
         });
     });
 
-    xit('should fail when saving without an email', function(done) {
-        user.email = '';
-        user.save(function(err) {
-            should.exist(err);
+    it('should generate a slug as id', function(done) {
+        post.save(function(err, post) {
+            post._id.should.equal('some-blog-post');
             done();
         });
     });
 
-    xit("should authenticate user if password is valid", function() {
-        return user.authenticate('password').should.be.true;
-    });
-
-    xit("should not authenticate user if password is invalid", function() {
-        return user.authenticate('blah').should.not.be.true;
+    it("should have a fullUrl", function(done) {
+        post.save(function(err, post) {
+            post.fullUrl.should.equal(process.env.DOMAIN + '/blog/some-blog-post');
+            done();
+        });
     });
 });

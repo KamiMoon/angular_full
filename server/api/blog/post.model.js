@@ -70,7 +70,7 @@ PostSchema
 PostSchema
     .virtual('fullUrl')
     .get(function() {
-        return 'https://www.preservedfw.com/blog/' + this._id;
+        return process.env.DOMAIN + '/blog/' + this._id;
     });
 
 
