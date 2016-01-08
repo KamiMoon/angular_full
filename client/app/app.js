@@ -26,6 +26,9 @@ angular.module('angularFullApp', [
             'DESCRIPTION': 'Portfolio Website of Eric Kizaki',
             'KEYWORDS': 'Eric Kizaki, HTML5, CSS3, JavaScript, MEAN, AngularJS, Node.js, MongoDB',
             'AUTHOR': 'Eric Kizaki'
+        },
+        'DISQUS': {
+            'SHORTNAME': 'erickizakicom'
         }
     })
     .config(function($locationProvider, $urlRouterProvider, $httpProvider) {
@@ -63,6 +66,7 @@ angular.module('angularFullApp', [
     })
     .run(function($rootScope, $location, $timeout, Auth, SEOService, CONSTANTS) {
         $rootScope.Auth = Auth;
+        $rootScope.CONSTANTS = CONSTANTS;
 
         $rootScope.generateImage = function(cloudinaryId, transform) {
 
@@ -117,5 +121,20 @@ angular.module('angularFullApp', [
 
 
         });
+
+        //TODO make this a directive
+        $rootScope.loadCommentCount = function() {
+            window.disqus_shortname = CONSTANTS.DISQUS.SHORTNAME;
+
+            if (!window.DISQUSWIDGETS) {
+                //TODO - configurable
+                $('head').append('<script id="dsq-count-scr" src="//' + CONSTANTS.DISQUS.SHORTNAME + '.disqus.com/count.js?" async></script>');
+            } else {
+                window.DISQUSWIDGETS.getCount({
+                    reset: true
+
+                });
+            }
+        };
 
     });

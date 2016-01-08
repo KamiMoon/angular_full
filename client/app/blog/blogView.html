@@ -17,7 +17,7 @@
             </div>
             <br>
             <blog-post post="post" ng-if="contentLoaded"></blog-post>
-            <dir-disqus disqus-shortname="erickizakicom" disqus-identifier="{{post._id}}" disqus-url="http://www.erickizaki.com/blog/{{post._id}}" disqus-title="{{post.title}}" ready-to-bind="{{contentLoaded}}">
+            <dir-disqus disqus-shortname="{{CONSTANTS.DISQUS.SHORTNAME}}" disqus-identifier="{{post._id}}" disqus-url="http://www.erickizaki.com/blog/{{post._id}}" disqus-title="{{post.title}}" ready-to-bind="{{contentLoaded}}">
             </dir-disqus>
         </div>
         <div class="col-md-3">

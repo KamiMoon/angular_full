@@ -1,21 +1,5 @@
 'use strict';
 
-
-var loadCommentCount = function() {
-    window.disqus_shortname = 'erickizakicom';
-
-    if (!window.DISQUSWIDGETS) {
-        //TODO - configurable
-        $('head').append('<script id="dsq-count-scr" src="//erickizakicom.disqus.com/count.js?" async></script>');
-    } else {
-        window.DISQUSWIDGETS.getCount({
-            reset: true
-
-        });
-    }
-};
-
-
 angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateParams, BlogService, $timeout) {
 
     $scope.searchParams = {
@@ -40,7 +24,7 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
 
             $timeout(function() {
                 $timeout(function() {
-                    loadCommentCount();
+                    $scope.loadCommentCount();
                 });
             });
 
@@ -187,7 +171,7 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
 
         $timeout(function() {
             $timeout(function() {
-                loadCommentCount();
+                $scope.loadCommentCount();
             });
         });
     });
