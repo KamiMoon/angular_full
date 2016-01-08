@@ -5,7 +5,7 @@
                 <h3><span class="glyphicon glyphicon-globe"></span> Post Info:</h3>
                 <div class="form-horizontal">
                     <b-input model="post.title" required="true"></b-input>
-                    <b-input type="file" model="post.photo" transformation="w_100,h_100,c_thumb,g_face"></b-input>
+                    <b-input type="file" multiple="true" model="post.photo" transformation="w_100,h_100,c_fit"></b-input>
                     <div class="form-group">
                         <div class="col-lg-2 control-label">Keywords</div>
                         <div class="col-lg-10">

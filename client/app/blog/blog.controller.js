@@ -5,6 +5,7 @@ var loadCommentCount = function() {
     window.disqus_shortname = 'erickizakicom';
 
     if (!window.DISQUSWIDGETS) {
+        //TODO - configurable
         $('head').append('<script id="dsq-count-scr" src="//erickizakicom.disqus.com/count.js?" async></script>');
     } else {
         window.DISQUSWIDGETS.getCount({
@@ -52,7 +53,7 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
 
     runQuery();
 
-}).controller('BlogAddEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService, Auth, Upload, ControllerUtil, $http) {
+}).controller('BlogAddEditCtrl', function($scope, $stateParams, $location, BlogService, ValidationService, Auth, Upload, ControllerUtil, $http, CONSTANTS) {
     var action = $stateParams.action;
     var id = $stateParams.id;
     var user = Auth.getCurrentUser();
@@ -127,9 +128,9 @@ angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateP
                 if (file) {
                     Upload.upload({
                         skipAuthorization: true,
-                        url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
+                        url: CONSTANTS.CLOUDINARY_UPLOAD_URL,
                         fields: {
-                            upload_preset: 'saogp2ap' //,
+                            upload_preset: CONSTANTS.CLOUDINARY_UPLOAD_PRESET //,
                                 //tags: 'myphotoalbum',
                                 //context: 'photo=' + scope.title
                         },

@@ -16,6 +16,11 @@ angular.module('angularFullApp', [
         'ui.bootstrap'
 
     ])
+    .constant('CONSTANTS', {
+        'CLOUDINARY_IMAGE_URL': 'http://res.cloudinary.com/ddovrks1z/image/upload/',
+        'CLOUDINARY_UPLOAD_URL': 'https://api.cloudinary.com/v1_1/ddovrks1z/upload',
+        'CLOUDINARY_UPLOAD_PRESET': 'saogp2ap'
+    })
     .config(function($locationProvider, $urlRouterProvider, $httpProvider) {
         $urlRouterProvider
             .otherwise('/');
@@ -49,7 +54,7 @@ angular.module('angularFullApp', [
             }
         };
     })
-    .run(function($rootScope, $location, $timeout, Auth, SEOService) {
+    .run(function($rootScope, $location, $timeout, Auth, SEOService, CONSTANTS) {
         $rootScope.Auth = Auth;
 
         $rootScope.generateImage = function(cloudinaryId, transform) {
@@ -60,7 +65,7 @@ angular.module('angularFullApp', [
                 transform = '';
             }
 
-            return 'http://res.cloudinary.com/ddovrks1z/image/upload/' + transform + cloudinaryId + '.png';
+            return CONSTANTS.CLOUDINARY_IMAGE_URL + transform + cloudinaryId + '.png';
         };
 
         //Defaults

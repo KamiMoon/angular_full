@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularFullApp')
-    .directive('bUpload', function($rootScope, $timeout, Upload) {
+    .directive('bUpload', function($rootScope, $timeout, Upload, CONSTANTS) {
         return {
             templateUrl: 'components/bInput/bUpload.directive.html',
             scope: {
@@ -17,9 +17,9 @@ angular.module('angularFullApp')
                     if (file) {
                         file.upload = Upload.upload({
                             skipAuthorization: true,
-                            url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
+                            url: CONSTANTS.CLOUDINARY_UPLOAD_URL,
                             fields: {
-                                upload_preset: 'saogp2ap' //,
+                                upload_preset: CONSTANTS.CLOUDINARY_UPLOAD_PRESET //,
                                     //tags: 'myphotoalbum',
                                     //context: 'photo=' + scope.title
                             },
@@ -33,7 +33,7 @@ angular.module('angularFullApp')
 
                                 var public_id = file.result.public_id;
 
-                                var url = 'https://res.cloudinary.com/ddovrks1z/image/upload/';
+                                var url = CONSTANTS.CLOUDINARY_IMAGE_URL;
 
                                 if (scope.transformation) {
                                     url += scope.transformation + '/';
@@ -102,9 +102,9 @@ angular.module('angularFullApp')
 
                             file.upload = Upload.upload({
                                 skipAuthorization: true,
-                                url: "https://api.cloudinary.com/v1_1/" + "ddovrks1z" + "/upload",
+                                url: CONSTANTS.CLOUDINARY_UPLOAD_URL,
                                 fields: {
-                                    upload_preset: 'saogp2ap' //,
+                                    upload_preset: CONSTANTS.CLOUDINARY_UPLOAD_PRESET //,
                                         //tags: 'myphotoalbum',
                                         //context: 'photo=' + scope.title
                                 },
@@ -118,7 +118,7 @@ angular.module('angularFullApp')
 
                                     var public_id = file.result.public_id;
 
-                                    var url = 'https://res.cloudinary.com/ddovrks1z/image/upload/';
+                                    var url = CONSTANTS.CLOUDINARY_IMAGE_URL;
 
                                     if (scope.transformation) {
                                         url += scope.transformation + '/';
