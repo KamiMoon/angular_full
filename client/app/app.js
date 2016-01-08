@@ -19,7 +19,14 @@ angular.module('angularFullApp', [
     .constant('CONSTANTS', {
         'CLOUDINARY_IMAGE_URL': 'http://res.cloudinary.com/ddovrks1z/image/upload/',
         'CLOUDINARY_UPLOAD_URL': 'https://api.cloudinary.com/v1_1/ddovrks1z/upload',
-        'CLOUDINARY_UPLOAD_PRESET': 'saogp2ap'
+        'CLOUDINARY_UPLOAD_PRESET': 'saogp2ap',
+        'SEO_DEFAULTS': {
+            'IMAGE': 'http://www.erickizaki.com/assets/eric_kizaki.jpg',
+            'TITLE': 'erickizaki.com',
+            'DESCRIPTION': 'Portfolio Website of Eric Kizaki',
+            'KEYWORDS': 'Eric Kizaki, HTML5, CSS3, JavaScript, MEAN, AngularJS, Node.js, MongoDB',
+            'AUTHOR': 'Eric Kizaki'
+        }
     })
     .config(function($locationProvider, $urlRouterProvider, $httpProvider) {
         $urlRouterProvider

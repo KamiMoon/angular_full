@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('angularFullApp')
-    .service('SEOService', function($rootScope) {
+    .service('SEOService', function($rootScope, CONSTANTS) {
 
         $rootScope.seo = {};
 
-        var defaultImage = 'http://www.erickizaki.com/assets/eric_kizaki.jpg';
+        var defaultImage = CONSTANTS.SEO_DEFAULTS.IMAGE;
 
         this.getDefaultSEO = function() {
             return {
-                title: 'erickizaki.com',
-                description: 'Portfolio Website of Eric Kizaki',
-                keywords: 'Eric Kizaki, HTML5, CSS3, JavaScript, MEAN, AngularJS, Node.js, MongoDB',
-                author: 'Eric Kizaki',
+                title: CONSTANTS.SEO_DEFAULTS.TITLE,
+                description: CONSTANTS.SEO_DEFAULTS.DESCRIPTION,
+                keywords: CONSTANTS.SEO_DEFAULTS.KEYWORDS,
+                author: CONSTANTS.SEO_DEFAULTS.AUTHOR,
                 url: window.location.href,
                 type: 'article',
                 image: defaultImage
