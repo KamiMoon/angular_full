@@ -2,14 +2,15 @@
 
 var express = require('express');
 var controller = require('./task.controller');
+var cors = require('cors');
 
 var router = express.Router();
 
-router.get('/', controller.index);
-router.get('/:id', controller.show);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.destroy);
+router.get('/', cors(), controller.index);
+router.get('/:id', cors(), controller.show);
+router.post('/', cors(), controller.create);
+router.put('/:id', cors(), controller.update);
+router.patch('/:id', cors(), controller.update);
+router.delete('/:id', cors(), controller.destroy);
 
 module.exports = router;
