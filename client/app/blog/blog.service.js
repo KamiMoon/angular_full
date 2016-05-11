@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .factory('BlogService', function($resource) {
+    angular.module('angularFullApp')
+        .factory('BlogService', BlogService);
+
+    function BlogService($resource) {
         return $resource('/api/blog/:id/:controller', {
             id: '@_id'
         }, {
@@ -35,4 +38,6 @@ angular.module('angularFullApp')
                 isArray: true
             }
         });
-    });
+    }
+
+})();
