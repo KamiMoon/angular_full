@@ -1,28 +1,30 @@
 (function() {
     'use strict';
 
-    angular.module('angularFullApp').controller('UserEditController', function($scope, $location, $stateParams, User, ControllerUtil) {
+    angular.module('angularFullApp').controller('UserEditController', UserEditController);
+
+    function UserEditController($location, $stateParams, User, ControllerUtil) {
         var id = $stateParams.id;
 
-        $scope.user = User.profile({
-            id: id
-        });
+        var vm = this;
+        vm.user = User.profile({ id: id });
+        vm.save = save;
 
-        $scope.save = function(form) {
+        function save(form) {
 
             if (form.$valid) {
 
                 var request = User.update({
                     id: id
-                }, $scope.user).$promise;
+                }, vm.user).$promise;
 
                 ControllerUtil.handle(request, form).then(function() {
                     $location.path('/profile/' + id);
                 });
             }
 
-        };
+        }
 
-    });
+    }
 
 })();
