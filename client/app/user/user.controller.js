@@ -46,7 +46,7 @@ angular.module('angularFullApp')
 
         $scope.save = function(form) {
 
-            if (ControllerUtil.validate($scope, form)) {
+            if (form.$valid) {
 
                 var request = User.update({
                     id: id

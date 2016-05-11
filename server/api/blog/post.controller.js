@@ -11,7 +11,7 @@ exports.getMailListTotal = function(req, res) {
             return ControllerUtil.handleError(res, err);
         }
 
-        return res.json(total);
+        return res.json({ total: total });
     });
 
 };

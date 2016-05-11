@@ -19,6 +19,15 @@ angular.module('angularFullApp')
                 method: 'GET',
                 url: '/api/blog/keywords',
                 isArray: true
+            },
+            getMailingListTotal: {
+                method: 'GET',
+                url: '/api/blog/getMailListTotal',
+                isArray: false
+            },
+            subscribeToMailingList: {
+                method: 'GET',
+                url: '/api/blog/subscribe/:email'
             }
         });
     });

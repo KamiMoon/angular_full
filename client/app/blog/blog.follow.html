@@ -3,12 +3,12 @@
     <div class="panel-body">
         Enter your email address to follow this blog and receive notifications of new posts by email.
         <br>
-        <br> Join {{follow.followers}} followers.
+        <br> Join {{vm.follow.followers}} followers.
         <br>
         <br>
-        <form name="form" ng-submit="save(form)" novalidate>
+        <form name="form" ng-submit="vm.save(form)" novalidate>
             <div class="form-horizontal">
-                <b-input type="email" model="follow.email" required="true"></b-input>
+                <b-input type="email" model="vm.follow.email" required="true"></b-input>
                 <div class="form-group required">
                     <label class="col-lg-2 control-label"></label>
                     <div class="col-lg-10">

@@ -57,7 +57,7 @@
         function save(form) {
             var request;
 
-            if (ControllerUtil.validate(vm, form)) {
+            if (form.$valid) {
 
                 if (action === 'edit') {
                     request = BlogService.update({

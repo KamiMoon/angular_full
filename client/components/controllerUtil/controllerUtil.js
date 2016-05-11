@@ -17,12 +17,6 @@ angular.module('angularFullApp')
             return promise;
         };
 
-        this.validate = function($scope, form) {
-            $scope.submitted = true;
-
-            return form.$valid;
-        };
-
         this.getStates = function() {
             var states = $localStorage.states;
             var deferred = $q.defer();

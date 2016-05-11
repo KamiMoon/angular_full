@@ -12,7 +12,17 @@ angular.module('angularFullApp')
             var index = modelString.indexOf('.');
 
             if (index !== -1) {
-                return modelString.substr(index + 1);
+                var currentString = modelString.substr(index + 1);
+                var secondIndex = currentString.indexOf('.');
+
+                //for nested try this again
+                //TOOD - only supports 2 levels deep: ex: vm.follow.someProp 
+                if (secondIndex !== -1) {
+                    return currentString.substr(secondIndex + 1);
+                } else {
+                    return currentString;
+                }
+
             }
 
             //there was no '.' so just use directly
@@ -57,8 +67,8 @@ angular.module('angularFullApp')
             html += '"';
             if (attrs.name) {
                 var someClass = "";
-                someClass += "{ 'has-success': form." + attrs.name + ".$valid && submitted,";
-                someClass += " 'has-error': (form." + attrs.name + ".$invalid && submitted) || errors." + attrs.name + " }";
+                someClass += "{ 'has-success': form." + attrs.name + ".$valid && form.$submitted,";
+                someClass += " 'has-error': (form." + attrs.name + ".$invalid && form.$submitted) || errors." + attrs.name + " }";
 
                 html += ' ng-class="' + someClass + '"';
             }
@@ -78,32 +88,32 @@ angular.module('angularFullApp')
             if (attrs.name) {
 
                 if (attrs.required) {
-                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.required && submitted">';
+                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.required && form.$submitted">';
                     html += getDefaultRequiredMessage(attrs.label) + '</p>';
                 }
 
                 if (attrs.minlength && !attrs.maxlength) {
-                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.minlength && submitted">';
+                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.minlength && form.$submitted">';
                     html += getDefaultMinLengthMessage(attrs.label, attrs.minlength) + '</p>';
                 }
 
                 if (attrs.maxlength && !attrs.minlength) {
-                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.maxlength && submitted">';
+                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.maxlength && form.$submitted">';
                     html += getDefaultMaxLengthMessage(attrs.label, attrs.maxlength) + '</p>';
                 }
 
                 if (attrs.maxlength && attrs.minlength) {
-                    html += '<p class="help-block" ng-show="(form.' + attrs.name + '.$error.maxlength || form.' + attrs.name + '.$error.minlength) && submitted">';
+                    html += '<p class="help-block" ng-show="(form.' + attrs.name + '.$error.maxlength || form.' + attrs.name + '.$error.minlength) && form.$submitted">';
                     html += getDefaultMinAndMaxLengthMessage(attrs.label, attrs.minlength, attrs.maxlength) + '</p>';
                 }
 
                 if (attrs.type === 'email') {
-                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.email && submitted">';
+                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.email && form.$submitted">';
                     html += getDefaultEmailFormatMessage() + '</p>';
                 }
 
                 if (attrs.type === 'url') {
-                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.url && submitted">';
+                    html += '<p class="help-block" ng-show="form.' + attrs.name + '.$error.url && form.$submitted">';
                     html += getDefaultUrlFormatMessage() + '</p>';
                 }
 
