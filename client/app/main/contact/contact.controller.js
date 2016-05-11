@@ -3,7 +3,7 @@
 
     angular.module('angularFullApp').controller('ContactController', ContactController);
 
-    function ContactController($http, vcRecaptchaService, ValidationService) {
+    function ContactController(ContactService, vcRecaptchaService, ValidationService) {
         var vm = this;
         vm.contact = {
             name: '',
@@ -23,7 +23,7 @@
 
                 if (form.$valid) {
 
-                    $http.post('api/contacts/contactus', vm.contact).then(function() {
+                    ContactService.sendContactMessage(vm.contact).then(function() {
                         ValidationService.success('Your Message Has Been Sent.');
                     }, function(err) {
                         ValidationService.error();

@@ -8,7 +8,7 @@ angular.module('angularFullApp')
             templateUrl: 'app/main/main.html'
         }).state('contact', {
             url: '/contact',
-            templateUrl: 'app/main/contact.html',
+            templateUrl: 'app/main/contact/contact.html',
             controller: 'ContactController',
             controllerAs: 'vm'
         }).state('portfolio', {
