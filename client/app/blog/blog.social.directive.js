@@ -1,13 +1,17 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .directive('blogSocial', function($http) {
-        return {
-            templateUrl: 'app/blog/blog.social.html',
+    angular.module('angularFullApp')
+        .directive('blogSocial', blogSocial);
+
+    function blogSocial() {
+        var directive = {
             restrict: 'E',
-            scope: {},
-            link: function postLink(scope, element, attrs) {
-
-            }
+            templateUrl: 'app/blog/blog.social.html',
+            scope: {}
         };
-    });
+
+        return directive;
+    }
+
+})();
