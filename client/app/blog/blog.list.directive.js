@@ -1,17 +1,30 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .directive('blogList', function($http) {
-        return {
-            templateUrl: 'app/blog/blog.list.html',
+    angular.module('angularFullApp')
+        .directive('blogList', blogList);
+
+    function blogList(BlogService) {
+        var directive = {
             restrict: 'E',
+            templateUrl: 'app/blog/blog.list.html',
             scope: {
                 current: '@'
             },
-            link: function postLink($scope, $element, attrs) {
-                $http.get('/api/blog/list').then(function(results) {
-                    $scope.posts = results.data;
-                });
-            }
+            controller: BlogListController,
+            controllerAs: 'vm',
+            bindToController: true
         };
-    });
+
+        return directive;
+
+        function BlogListController() {
+            var vm = this;
+
+            BlogService.getListOfPosts().$promise.then(function(posts) {
+                vm.posts = posts;
+            });
+        }
+    }
+
+})();

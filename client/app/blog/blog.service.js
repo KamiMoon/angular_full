@@ -28,6 +28,11 @@ angular.module('angularFullApp')
             subscribeToMailingList: {
                 method: 'GET',
                 url: '/api/blog/subscribe/:email'
+            },
+            getListOfPosts: {
+                method: 'GET',
+                url: '/api/blog/list',
+                isArray: true
             }
         });
     });
