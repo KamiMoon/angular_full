@@ -7,14 +7,17 @@ angular.module('angularFullApp')
                 url: '/user',
                 templateUrl: 'app/user/userList.html',
                 controller: 'UserListController',
+                controllerAs: 'vm',
                 roles: ['admin']
             }).state('userEdit', {
                 url: '/user/edit/:id',
                 templateUrl: 'app/user/userEdit.html',
                 controller: 'UserEditController',
+                controllerAs: 'vm'
             }).state('userView', {
                 url: '/profile/:id',
                 templateUrl: 'app/user/userView.html',
-                controller: 'UserViewController'
+                controller: 'UserViewController',
+                controllerAs: 'vm'
             });
     });
