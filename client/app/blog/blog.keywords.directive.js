@@ -2,41 +2,32 @@
     'use strict';
 
     angular.module('angularFullApp')
-        .directive('blogKeywords', blogKeywords);
-
-    function blogKeywords(BlogService) {
-
-        var directive = {
-            restrict: 'E',
+        .component('blogKeywords', {
             templateUrl: 'app/blog/blog.keywords.html',
-            scope: {
+            bindings: {
                 keyword: '@'
             },
             controller: KeywordsController,
-            controllerAs: 'vm',
-            bindToController: true
-        };
+            controllerAs: 'vm'
+        });
 
-        return directive;
+    function KeywordsController(BlogService) {
+        var vm = this;
 
-        function KeywordsController() {
-            var vm = this;
+        BlogService.getKeywords().$promise.then(function(keywords) {
 
-            BlogService.getKeywords().$promise.then(function(keywords) {
-
-                //highlight active keyword
-                if (vm.keyword) {
-                    for (var i = 0; i < keywords.length; i++) {
-                        if (vm.keyword === keywords[i]._id) {
-                            keywords[i].active = true;
-                            break;
-                        }
+            //highlight active keyword
+            if (vm.keyword) {
+                for (var i = 0; i < keywords.length; i++) {
+                    if (vm.keyword === keywords[i]._id) {
+                        keywords[i].active = true;
+                        break;
                     }
                 }
+            }
 
-                vm.keywords = keywords;
-            });
-        }
+            vm.keywords = keywords;
+        });
     }
 
 })();
