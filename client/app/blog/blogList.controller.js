@@ -1,40 +1,45 @@
-'use strict';
+(function () {
+    'use strict';
 
-angular.module('angularFullApp').controller('BlogCtrl', function($scope, $stateParams, BlogService, $timeout) {
+    angular.module('angularFullApp').controller('BlogListController', BlogListController);
 
-    $scope.searchParams = {
-        page: 1,
-        itemsPerPage: 10,
-        totalItems: 0
-    };
+    function BlogListController($rootScope, $stateParams, BlogService, $timeout) {
+        var vm = this;
 
-    if ($stateParams.keyword) {
-        $scope.searchParams['keywords.text'] = $stateParams.keyword;
-    }
+        vm.searchParams = {
+            page: 1,
+            itemsPerPage: 10,
+            totalItems: 0
+        };
 
-    //paging https://angular-ui.github.io/bootstrap/#/pagination
-    var runQuery = function() {
+        if ($stateParams.keyword) {
+            vm.searchParams['keywords.text'] = $stateParams.keyword;
+        }
 
-        BlogService.query($scope.searchParams).$promise.then(function(postWrapper) {
-            $scope.posts = postWrapper.posts;
+        vm.pageChanged = runQuery;
 
-            $scope.searchParams.page = postWrapper.paging.page;
-            $scope.searchParams.itemsPerPage = postWrapper.paging.itemsPerPage;
-            $scope.searchParams.totalItems = postWrapper.paging.totalItems;
+        //paging https://angular-ui.github.io/bootstrap/#/pagination
+        function runQuery() {
 
-            $timeout(function() {
+            BlogService.query(vm.searchParams).$promise.then(function(postWrapper) {
+                vm.posts = postWrapper.posts;
+
+                vm.searchParams.page = postWrapper.paging.page;
+                vm.searchParams.itemsPerPage = postWrapper.paging.itemsPerPage;
+                vm.searchParams.totalItems = postWrapper.paging.totalItems;
+
                 $timeout(function() {
-                    $scope.loadCommentCount();
+                    $timeout(function() {
+                        //TODO - terrible get rid of $rootScope
+                        $rootScope.loadCommentCount();
+                    });
                 });
+
             });
+        };
 
-        });
-    };
-
-    $scope.pageChanged = function() {
         runQuery();
+
     };
 
-    runQuery();
-
-});
+})();

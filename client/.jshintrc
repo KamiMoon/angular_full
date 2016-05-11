@@ -16,6 +16,7 @@
     "strict": true,
     "trailing": true,
     "smarttabs": true,
+    "latedef": 'nofunc',
     "globals": {
         "jQuery": true,
         "angular": true,

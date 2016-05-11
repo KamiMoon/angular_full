@@ -1,36 +1,47 @@
-angular.module('angularFullApp').controller('BlogViewCtrl', function($scope, SEOService, $timeout, $stateParams, Auth, BlogService, ValidationService, $location, ControllerUtil, $http) {
+(function () {
+    'use strict';
 
-    var id = $stateParams.id;
-    $scope.contentLoaded = false;
+    angular.module('angularFullApp').controller('BlogViewController', BlogViewController);
 
-    BlogService.get({
-        id: id
-    }).$promise.then(function(post) {
-        $scope.post = post;
-        $scope.contentLoaded = true;
+    function BlogViewController($rootScope, SEOService, $timeout, $stateParams, BlogService, ValidationService, ControllerUtil) {
+        var id = $stateParams.id;
 
-        SEOService.setSEO({
-            title: post.title,
-            description: post.headingQuote,
-            author: post.user_name,
-            image: post.photo
-        });
+        var vm = this;
+        vm.contentLoaded = false;
+        vm.delete = doDelete;
+        vm.publishToMailingList = publishToMailingList;
 
-        $timeout(function() {
+        BlogService.get({
+            id: id
+        }).$promise.then(function(post) {
+            vm.post = post;
+            vm.contentLoaded = true;
+
+            SEOService.setSEO({
+                title: post.title,
+                description: post.headingQuote,
+                author: post.user_name,
+                image: post.photo
+            });
+
             $timeout(function() {
-                $scope.loadCommentCount();
+                $timeout(function() {
+                    $rootScope.loadCommentCount();
+                });
             });
         });
-    });
 
-    $scope.delete = function() {
-        ControllerUtil.delete(id, BlogService, '/blog');
-    };
+        function doDelete() {
+            ControllerUtil.delete(id, BlogService, '/blog');
+        }
 
-    $scope.publishToMailingList = function(id) {
-        $http.get('/api/blog/publish/' + id).then(function(results) {
-            ValidationService.success('Article Published.');
-        });
-    };
+        function publishToMailingList(id) {
+            BlogService.publishToMailingList({
+                id: id
+            }).$promise.then(function(results) {
+                ValidationService.success('Article Published.');
+            });
+        }
+    }
 
-});
+})();

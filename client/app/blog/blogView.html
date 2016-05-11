@@ -6,25 +6,25 @@
             <br>
             <div ng-if="Auth.hasRoles(['admin', 'blogger'])">
                 <br>
-                <a href="/blog/edit/{{post._id}}" class="btn btn-default btn-lg" role="button">Edit</a>
+                <a href="/blog/edit/{{vm.post._id}}" class="btn btn-default btn-lg" role="button">Edit</a>
                 <br>
                 <br>
-                <a ng-click="delete(post._id)" class="btn btn-default btn-lg" role="button">Delete</a>
+                <a ng-click="vm.delete(vm.post._id)" class="btn btn-default btn-lg" role="button">Delete</a>
                 <br>
                 <br>
-                <a ng-click="publishToMailingList(post._id)" class="btn btn-default btn-lg" role="button">Publish to Mailing List</a>
+                <a ng-click="vm.publishToMailingList(vm.post._id)" class="btn btn-default btn-lg" role="button">Publish to Mailing List</a>
                 <br>
             </div>
             <br>
-            <blog-post post="post" ng-if="contentLoaded"></blog-post>
-            <dir-disqus disqus-shortname="{{CONSTANTS.DISQUS.SHORTNAME}}" disqus-identifier="{{post._id}}" disqus-url="http://www.erickizaki.com/blog/{{post._id}}" disqus-title="{{post.title}}" ready-to-bind="{{contentLoaded}}">
+            <blog-post post="vm.post" ng-if="vm.contentLoaded"></blog-post>
+            <dir-disqus disqus-shortname="{{CONSTANTS.DISQUS.SHORTNAME}}" disqus-identifier="{{vm.post._id}}" disqus-url="http://www.erickizaki.com/blog/{{vm.post._id}}" disqus-title="{{vm.post.title}}" ready-to-bind="{{vm.contentLoaded}}">
             </dir-disqus>
         </div>
         <div class="col-md-3">
             <blog-social></blog-social>
             <blog-follow></blog-follow>
             <blog-keywords></blog-keywords>
-            <blog-list current="{{post._id}}"></blog-list>
+            <blog-list current="{{vm.post._id}}"></blog-list>
         </div>
     </div>
 </div>

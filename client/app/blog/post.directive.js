@@ -5,6 +5,9 @@ angular.module('angularFullApp')
         return {
             templateUrl: 'app/blog/post.html',
             restrict: 'E',
+            scope: {
+                post: '='
+            },
             link: function postLink(scope, element, attrs) {
 
                 $timeout(function() {

@@ -10,6 +10,15 @@ angular.module('angularFullApp')
             },
             query: {
                 isArray: false
+            },
+            publishToMailingList: {
+                method: 'GET',
+                url: '/api/blog/publish/:id'
+            },
+            getKeywords: {
+                method: 'GET',
+                url: '/api/blog/keywords',
+                isArray: true
             }
         });
     });

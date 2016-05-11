@@ -5,19 +5,23 @@ angular.module('angularFullApp')
         $stateProvider.state('blogList', {
             url: '/blog',
             templateUrl: 'app/blog/blogList.html',
-            controller: 'BlogCtrl'
+            controller: 'BlogListController',
+            controllerAs: 'vm'
         }).state('blogAddEdit', {
             url: '/blog/:action/:id',
             templateUrl: 'app/blog/blogAdd.html',
-            controller: 'BlogAddEditCtrl',
+            controller: 'BlogAddEditController',
+            controllerAs: 'vm',
             roles: ['admin', 'blogger']
         }).state('blogView', {
             url: '/blog/:id',
             templateUrl: 'app/blog/blogView.html',
-            controller: 'BlogViewCtrl'
+            controller: 'BlogViewController',
+            controllerAs: 'vm'
         }).state('blogKeyword', {
             url: '/blogKeyword/:keyword',
             templateUrl: 'app/blog/blogList.html',
-            controller: 'BlogCtrl'
+            controller: 'BlogListController',
+            controllerAs: 'vm'
         });
     });
