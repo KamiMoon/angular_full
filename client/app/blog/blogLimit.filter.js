@@ -1,23 +1,28 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp').filter("blogLimit", ['$sce', function($sce) {
-    return function(htmlCode) {
+    angular.module('angularFullApp').filter("blogLimit", blogLimit);
 
-        //strip all images
-        var content = htmlCode.replace(/<img[^>]*>/g, "");
+    function blogLimit($sce) {
+        return function(htmlCode) {
 
-        //strip all code
-        content = content.replace(/<pre><code>([.*?][\n])<\/code><\/pre>/gm, "");
+            //strip all images
+            var content = htmlCode.replace(/<img[^>]*>/g, "");
 
-        //strip all line breaks
-        content = content.replace(/<br[^>]*>/g, "");
+            //strip all code
+            content = content.replace(/<pre><code>([.*?][\n])<\/code><\/pre>/gm, "");
 
-        //strip all empty p
-        content = content.replace(/<p><\/p>/g, "");
+            //strip all line breaks
+            content = content.replace(/<br[^>]*>/g, "");
 
-        //limit to 200 characters
-        content = content.substring(0, 200);
+            //strip all empty p
+            content = content.replace(/<p><\/p>/g, "");
 
-        return $sce.trustAsHtml(content);
-    };
-}]);
+            //limit to 200 characters
+            content = content.substring(0, 200);
+
+            return $sce.trustAsHtml(content);
+        };
+    }
+
+})();
