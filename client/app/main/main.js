@@ -5,12 +5,12 @@ angular.module('angularFullApp')
 
         $stateProvider.state('/', {
             url: '/',
-            templateUrl: 'app/main/main.html',
-            controller: 'MainCtrl'
+            templateUrl: 'app/main/main.html'
         }).state('contact', {
             url: '/contact',
             templateUrl: 'app/main/contact.html',
-            controller: 'ContactCtrl'
+            controller: 'ContactController',
+            controllerAs: 'vm'
         }).state('portfolio', {
             url: '/portfolio',
             templateUrl: 'app/main/portfolio.html'
