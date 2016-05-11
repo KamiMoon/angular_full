@@ -5,6 +5,7 @@
 
     function UserViewController($stateParams, User, ValidationService) {
         var id = $stateParams.id;
+
         var vm = this;
         vm.user = null;
 

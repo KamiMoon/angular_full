@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .factory('User', function($resource) {
+    angular.module('angularFullApp')
+        .factory('User', User);
+
+    function User($resource) {
         return $resource('/api/users/:id/:controller', {
             id: '@_id'
         }, {
@@ -25,4 +28,6 @@ angular.module('angularFullApp')
                 url: 'api/users/:id/profile'
             }
         });
-    });
+    }
+
+})();
