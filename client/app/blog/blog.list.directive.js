@@ -1,29 +1,21 @@
 (function() {
     'use strict';
 
-    angular.module('angularFullApp').directive('blogList', blogList);
+    angular.module('angularFullApp').component('blogList', {
+        templateUrl: 'app/blog/blog.list.html',
+        bindings: {
+            current: '@'
+        },
+        controller: BlogListController,
+        controllerAs: 'vm'
+    });
 
-    function blogList(BlogService) {
-        var directive = {
-            restrict: 'E',
-            templateUrl: 'app/blog/blog.list.html',
-            scope: {
-                current: '@'
-            },
-            controller: BlogListController,
-            controllerAs: 'vm',
-            bindToController: true
-        };
+    function BlogListController(BlogService) {
+        var vm = this;
 
-        return directive;
-
-        function BlogListController() {
-            var vm = this;
-
-            BlogService.getListOfPosts().$promise.then(function(posts) {
-                vm.posts = posts;
-            });
-        }
+        BlogService.getListOfPosts().$promise.then(function(posts) {
+            vm.posts = posts;
+        });
     }
 
 })();
