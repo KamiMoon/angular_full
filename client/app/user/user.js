@@ -6,15 +6,15 @@ angular.module('angularFullApp')
             .state('userList', {
                 url: '/user',
                 templateUrl: 'app/user/userList.html',
-                controller: 'UserCtrl',
+                controller: 'UserListController',
                 roles: ['admin']
             }).state('userEdit', {
                 url: '/user/edit/:id',
                 templateUrl: 'app/user/userEdit.html',
-                controller: 'UserEditCtrl',
+                controller: 'UserEditController',
             }).state('userView', {
                 url: '/profile/:id',
-                templateUrl: 'app/user/profile.html',
-                controller: 'UserProfileCtrl'
+                templateUrl: 'app/user/userView.html',
+                controller: 'UserViewController'
             });
     });
