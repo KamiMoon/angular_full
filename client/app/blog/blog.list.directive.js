@@ -1,8 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('angularFullApp')
-        .directive('blogList', blogList);
+    angular.module('angularFullApp').directive('blogList', blogList);
 
     function blogList(BlogService) {
         var directive = {
