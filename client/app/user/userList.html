@@ -12,16 +12,16 @@
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="form-horizontal">
-                        <b-input model="searchParams.name"></b-input>
-                        <b-input model="searchParams.address"></b-input>
-                        <b-input model="searchParams.city"></b-input>
-                        <b-input type="select" source="states" label="State" model="searchParams.state"></b-input>
-                        <b-input model="searchParams.zip"></b-input>
-                        <b-input type="email" model="searchParams.email"></b-input>
-                        <b-input type="tel" model="searchParams.phone"></b-input>
+                        <b-input model="vm.searchParams.name"></b-input>
+                        <b-input model="vm.searchParams.address"></b-input>
+                        <b-input model="vm.searchParams.city"></b-input>
+                        <b-input type="select" source="states" label="State" model="vm.searchParams.state"></b-input>
+                        <b-input model="vm.searchParams.zip"></b-input>
+                        <b-input type="email" model="vm.searchParams.email"></b-input>
+                        <b-input type="tel" model="vm.searchParams.phone"></b-input>
                     </div>
                     <br />
-                    <button class="btn btn-primary" ng-click="search()">Search</button>
+                    <button class="btn btn-primary" ng-click="vm.search()">Search</button>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 <th>Phone</th>
                 <th>Actions</th>
             </tr>
-            <tr ng-repeat="user in users">
+            <tr ng-repeat="user in vm.users">
                 <td><a href="/profile/{{::user._id}}">{{::user.name}}</a></td>
                 <td>
                     <div ng-repeat="role in user.roles">{{::role.role}}</div>
@@ -52,7 +52,7 @@
                 <td>{{::user.phone | tel}}</td>
                 <td>
                     <a href="/user/edit/{{::user._id}}" class="btn btn-default btn-lg" role="button">Edit</a>
-                    <a ng-click="delete(user._id)" class="btn btn-default btn-lg" role="button">Delete</a>
+                    <a ng-click="vm.delete(user._id)" class="btn btn-default btn-lg" role="button">Delete</a>
                 </td>
             </tr>
         </table>

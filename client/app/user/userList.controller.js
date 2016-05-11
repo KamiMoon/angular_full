@@ -1,21 +1,21 @@
 (function() {
     'use strict';
 
-    angular.module('angularFullApp')
+    angular.module('angularFullApp').controller('UserListController', UserListController);
 
-    .controller('UserListController', function($scope, User, ValidationService) {
+    function UserListController(User, ValidationService) {
+        var vm = this;
 
-        $scope.users = User.query();
+        vm.users = User.query();
+        vm.searchParams = {};
+        vm.search = search;
+        vm.delete = deleteFn;
 
-        $scope.searchParams = {};
+        function search() {
+            vm.users = User.query(vm.searchParams);
+        }
 
-        $scope.search = function() {
-
-            $scope.users = User.query($scope.searchParams);
-
-        };
-
-        $scope.delete = function(id) {
+        function deleteFn(id) {
             if (id) {
 
                 var r = confirm('Are you sure you want to delete?');
@@ -25,9 +25,9 @@
                     }).$promise.then(function() {
                         ValidationService.success();
 
-                        angular.forEach($scope.users, function(obj, i) {
+                        angular.forEach(vm.users, function(obj, i) {
                             if (obj._id === id) {
-                                $scope.users.splice(i, 1);
+                                vm.users.splice(i, 1);
                             }
                         });
 
@@ -37,8 +37,8 @@
                 }
 
             }
-        };
+        }
 
-    })
+    }
 
 })();
