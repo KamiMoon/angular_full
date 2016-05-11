@@ -2,16 +2,14 @@
     'use strict';
 
     angular.module('angularFullApp')
-        .directive('blogSocial', blogSocial);
-
-    function blogSocial() {
-        var directive = {
-            restrict: 'E',
+        .component('blogSocial', {
             templateUrl: 'app/blog/blog.social.html',
-            scope: {}
-        };
+            bindings: {},
+            controller: BlogSocialController
+        });
 
-        return directive;
+    function BlogSocialController() {
+
     }
 
 })();
