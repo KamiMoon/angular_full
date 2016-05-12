@@ -4,6 +4,7 @@
     angular.module('angularFullApp')
         .directive('bFeedback', bFeedback);
 
+    //TODO - fix scope and replace
     function bFeedback() {
         return {
             restrict: 'E',

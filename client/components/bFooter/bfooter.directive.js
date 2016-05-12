@@ -1,10 +1,13 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .directive('bFooter', function() {
+    angular.module('angularFullApp')
+        .directive('bFooter', bFooter);
+
+    function bFooter() {
         return {
-            templateUrl: 'components/bFooter/footer.html',
             restrict: 'E',
+            templateUrl: 'components/bFooter/footer.html',
             link: function postLink(scope, element, attrs) {
 
                 var $goToTop = $('#go-to-top');
@@ -32,4 +35,6 @@ angular.module('angularFullApp')
                 });
             }
         };
-    });
+    }
+
+})();
