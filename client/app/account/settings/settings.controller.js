@@ -1,22 +1,29 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .controller('SettingsController', function($scope, User, Auth, $location, ValidationService) {
-        $scope.errors = {};
+    angular.module('angularFullApp')
+        .controller('SettingsController', SettingsController);
 
-        $scope.changePassword = function(form) {
-            $scope.submitted = true;
+    function SettingsController(User, Auth, $location, ValidationService) {
+        var vm = this;
+        vm.errors = {};
+        vm.user = {};
+        vm.changePassword = changePassword;
+
+        function changePassword(form) {
             if (form.$valid) {
-                Auth.changePassword($scope.user.oldPassword, $scope.user.newPassword)
+                Auth.changePassword(vm.user.oldPassword, vm.user.newPassword)
                     .then(function() {
                         ValidationService.success('Password successfully changed.');
                         $location.path('/profile/' + Auth.getCurrentUser()._id);
                     })
                     .catch(function() {
                         form.password.$setValidity('mongoose', false);
-                        $scope.errors.other = 'Incorrect password';
-                        $scope.message = '';
+                        vm.errors.other = 'Incorrect password';
+                        vm.message = '';
                     });
             }
-        };
-    });
+        }
+    }
+
+})();
