@@ -1,23 +1,27 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .controller('SignupCtrl', function($scope, Auth, $location, $window, ValidationService, vcRecaptchaService) {
-        $scope.user = {};
+    angular.module('angularFullApp')
+        .controller('SignupController', SignupController);
 
-        $scope.register = function(form) {
+    function SignupController(Auth, $location, ValidationService, vcRecaptchaService) {
+        var vm = this;
+
+        vm.user = {};
+        vm.register = register;
+
+        function register(form) {
 
             var captchaResponse = vcRecaptchaService.getResponse();
 
             if (captchaResponse === '') { //if string is empty
                 ValidationService.error('Please resolve the captcha and submit!');
             } else {
-                $scope.user['g-recaptcha-response'] = vcRecaptchaService.getResponse();
-
-                $scope.submitted = true;
+                vm.user['g-recaptcha-response'] = vcRecaptchaService.getResponse();
 
                 if (form.$valid) {
 
-                    Auth.createUser($scope.user)
+                    Auth.createUser(vm.user)
                         .then(function() {
                             ValidationService.success('You have been registered. Check your email to verify.');
                             // Account created, redirect to home
@@ -27,11 +31,11 @@ angular.module('angularFullApp')
                         });
                 }
             }
+        }
 
+        //vm.loginOauth = function(provider) {
+        //    $window.location.href = '/auth/' + provider;
+        //};
+    }
 
-        };
-
-        $scope.loginOauth = function(provider) {
-            $window.location.href = '/auth/' + provider;
-        };
-    });
+})();

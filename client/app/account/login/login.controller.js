@@ -1,16 +1,20 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .controller('LoginCtrl', function($scope, Auth, $location, $window, ValidationService) {
-        $scope.user = {};
+    angular.module('angularFullApp')
+        .controller('LoginController', LoginController);
 
-        $scope.login = function(form) {
-            $scope.submitted = true;
+    function LoginController(Auth, $location, ValidationService) {
+        var vm = this;
 
+        vm.user = {};
+        vm.login = login;
+
+        function login(form) {
             if (form.$valid) {
                 Auth.login({
-                        email: $scope.user.email,
-                        password: $scope.user.password
+                        email: vm.user.email,
+                        password: vm.user.password
                     })
                     .then(function() {
                         ValidationService.success('Logged In');
@@ -24,9 +28,11 @@ angular.module('angularFullApp')
                         ValidationService.error(err.message);
                     });
             }
-        };
+        }
 
-        $scope.loginOauth = function(provider) {
-            $window.location.href = '/auth/' + provider;
-        };
-    });
+        //vm.loginOauth = function(provider) {
+        //    $window.location.href = '/auth/' + provider;
+        //};
+    }
+
+})();

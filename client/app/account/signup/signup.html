@@ -2,20 +2,20 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form class="form-horizontal" name="form" ng-submit="register(form)" novalidate>
+            <form class="form-horizontal" name="form" ng-submit="vm.register(form)" novalidate>
                 <fieldset>
                     <legend>Register</legend>
-                    <b-input type="email" model="user.email" required="true"></b-input>
-                    <b-input type="password" model="user.password" required="true"></b-input>
-                    <b-input type="password" label="Confirm Password" model="user.confirmPassword" required="true"></b-input>
+                    <b-input type="email" model="vm.user.email" required="true"></b-input>
+                    <b-input type="password" model="vm.user.password" required="true"></b-input>
+                    <b-input type="password" label="Confirm Password" model="vm.user.confirmPassword" required="true"></b-input>
                     <div class="form-group required">
                         <label for="UserConfirmPassword" class="col-lg-2 control-label">
                             Agree to <a href="/terms" target="_blank">Terms and Conditions</a>
                         </label>
-                        <div class="col-lg-10" ng-class="{ 'has-success': form.terms.$valid && submitted, 
-                                'has-error': (form.terms.$invalid && submitted) || errors.terms }">
+                        <div class="col-lg-10" ng-class="{ 'has-success': form.terms.$valid && form.$submitted, 
+                                'has-error': (form.terms.$invalid && form.$submitted) || errors.terms }">
                             <input type="checkbox" required="true" ng-model="terms" name="terms" class="form-control" style="width: 32px" value="1">
-                            <p class="help-block" ng-show="form.terms.$error.required && submitted">
+                            <p class="help-block" ng-show="form.terms.$error.required && form.$submitted">
                                 Please accept the terms and conditions
                             </p>
                         </div>

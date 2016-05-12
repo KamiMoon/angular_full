@@ -2,11 +2,11 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <form class="form-horizontal" name="form" ng-submit="login(form)" novalidate>
+            <form class="form-horizontal" name="form" ng-submit="vm.login(form)" novalidate>
                 <fieldset>
                     <legend>Login</legend>
-                    <b-input type="email" model="user.email" required="true"></b-input>
-                    <b-input type="password" model="user.password" required="true"></b-input>
+                    <b-input type="email" model="vm.user.email" required="true"></b-input>
+                    <b-input type="password" model="vm.user.password" required="true"></b-input>
                     <div align="center">
                         <b-input type="submit" label="Login"></b-input>
                         <a style="margin-left: 15px" class="btn btn-lg btn-info" href="/signup">Register</a>
