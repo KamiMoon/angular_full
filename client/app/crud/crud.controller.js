@@ -1,12 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .controller('CrudCtrl', function($scope, Task) {
+    angular.module('angularFullApp')
+        .controller('CrudController', CrudController);
 
-        $scope.statuses = ['Not Started', 'In Progress', 'Finished'];
-
-        $scope.tasks = Task.query();
-
+    function CrudController(Task) {
         var defaultTaskToAdd = {
             name: '',
             hoursWorkedOn: 0,
@@ -14,41 +12,48 @@ angular.module('angularFullApp')
             status: 'Not Started'
         };
 
-        $scope.taskToAdd = angular.copy(defaultTaskToAdd);
+        var vm = this;
 
-        $scope.addTask = function() {
+        vm.statuses = ['Not Started', 'In Progress', 'Finished'];
+        vm.tasks = Task.query();
+        vm.taskToAdd = angular.copy(defaultTaskToAdd);
+        vm.addTask = addTask;
+        vm.deleteTask = deleteTask;
+        vm.saveTask = saveTask;
+
+        function addTask() {
             //TODO - name must be unique
 
-            var taskToSendToServer = new Task(angular.copy($scope.taskToAdd));
+            var taskToSendToServer = new Task(angular.copy(vm.taskToAdd));
 
             taskToSendToServer.$save(function(serverTask) {
-                $scope.tasks.push(serverTask);
-                $scope.taskToAdd = angular.copy(defaultTaskToAdd);
+                vm.tasks.push(serverTask);
+                vm.taskToAdd = angular.copy(defaultTaskToAdd);
             });
 
-        };
+        }
 
-        $scope.deleteTask = function(task) {
+        function deleteTask(task) {
 
             Task.remove({
                 id: task._id
             }).$promise.then(function() {
-                for (var i = 0; i < $scope.tasks.length; i++) {
-                    if ($scope.tasks[i]._id === task._id) {
-                        $scope.tasks.splice(i, 1);
+                for (var i = 0; i < vm.tasks.length; i++) {
+                    if (vm.tasks[i]._id === task._id) {
+                        vm.tasks.splice(i, 1);
                         break;
                     }
                 }
             });
 
-        };
+        }
 
-        $scope.saveTask = function(task) {
-            console.log(task);
-
+        function saveTask(task) {
             Task.update({
                 id: task._id
             }, task);
-        };
+        }
 
-    });
+    }
+
+})();

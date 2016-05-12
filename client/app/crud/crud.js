@@ -6,6 +6,7 @@ angular.module('angularFullApp')
         $stateProvider.state('crud', {
             url: '/crud',
             templateUrl: 'app/crud/crud.html',
-            controller: 'CrudCtrl'
+            controller: 'CrudController',
+            controllerAs: 'vm'
         });
     });
