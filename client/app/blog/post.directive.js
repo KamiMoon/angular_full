@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('angularFullApp').component('blogPost', blogPost);
+    angular.module('angularFullApp').directive('blogPost', blogPost);
 
     function blogPost($timeout) {
         var directive = {
