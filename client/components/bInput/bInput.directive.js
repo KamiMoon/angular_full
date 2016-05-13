@@ -1,12 +1,15 @@
-'use strict';
+(function() {
+    'use strict';
 
-/**
-Wrapper directive over angular and bootstrap form elements because they are way too verbose
+    /**
+    Wrapper directive over angular and bootstrap form elements because they are way too verbose
 
-*/
+    */
 
-angular.module('angularFullApp')
-    .directive('bInput', function($compile, InputService) {
+    angular.module('angularFullApp')
+        .directive('bInput', bInput);
+
+    function bInput($compile, InputService) {
 
         function getNameFromModelString(modelString) {
             var index = modelString.indexOf('.');
@@ -124,11 +127,11 @@ angular.module('angularFullApp')
             return html;
         }
 
-        var getAttribute = function(name, value) {
+        function getAttribute(name, value) {
             return ' ' + name + '="' + value + '" ';
-        };
+        }
 
-        var getBasicAttributes = function(attrs, doNotAddFormControl) {
+        function getBasicAttributes(attrs, doNotAddFormControl) {
             var html = '';
 
             if (attrs.required) {
@@ -165,9 +168,9 @@ angular.module('angularFullApp')
             }
 
             return html;
-        };
+        }
 
-        var getTemplate = function(attrs) {
+        function getTemplate(attrs) {
             var html = '';
 
             if (attrs.type === 'submit') {
@@ -238,10 +241,10 @@ angular.module('angularFullApp')
             }
 
             return html;
-        };
+        }
 
 
-        var populateDefault = function(key, scope) {
+        function populateDefault(key, scope) {
             scope[key] = [];
 
             InputService.get(key, 'api/constants/' + key).then(function(objs) {
@@ -252,9 +255,9 @@ angular.module('angularFullApp')
             // if (attrs) {
             //     attrs.options = key + "._id as " + key + ".name for " + key + "in " + key + "s";
             // }
-        };
+        }
 
-        var populateSelect = function(attrs, scope) {
+        function populateSelect(attrs, scope) {
             switch (attrs.source) {
                 case 'states':
                     scope[attrs.source] = InputService.getStates();
@@ -282,7 +285,7 @@ angular.module('angularFullApp')
                     break;
             }
 
-        };
+        }
 
         return {
             restrict: 'E',
@@ -344,4 +347,6 @@ angular.module('angularFullApp')
                 $compile(element.contents())(scope);
             }
         };
-    });
+    }
+
+})();

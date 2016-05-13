@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .directive('bImg', function(CONSTANTS) {
+    angular.module('angularFullApp')
+        .directive('bImg', bImg);
+
+    function bImg(CONSTANTS) {
         return {
             //transclude: true,
             scope: {
@@ -36,4 +39,6 @@ angular.module('angularFullApp')
 
             }
         };
-    });
+    }
+
+})();

@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .service('InputService', function($q, $http, $localStorage) {
+    angular.module('angularFullApp')
+        .service('InputService', InputService);
+
+    function InputService($q, $http, $localStorage) {
 
         var states = [{
             "name": "Alaska",
@@ -234,4 +237,6 @@ angular.module('angularFullApp')
             return roles;
         };
 
-    });
+    }
+
+})();
