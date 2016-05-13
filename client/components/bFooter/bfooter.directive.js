@@ -2,39 +2,41 @@
     'use strict';
 
     angular.module('angularFullApp')
-        .directive('bFooter', bFooter);
-
-    function bFooter() {
-        return {
-            restrict: 'E',
+        .component('bFooter', {
             templateUrl: 'components/bFooter/footer.html',
-            link: function postLink(scope, element, attrs) {
+            bindings: {},
+            controller: FooterController,
+            controllerAs: 'vm'
+        });
 
-                var $goToTop = $('#go-to-top');
+    function FooterController() {
+        this.$postLink = function() {
 
-                //jQuery
-                $goToTop.on('touchstart click', function() {
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 600);
-                });
+            var $goToTop = $('#go-to-top');
 
-                //capture scroll any percentage
-                $(window).scroll(function() {
+            //jQuery
+            $goToTop.on('touchstart click', function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 600);
+            });
 
-                    var wintop = $(window).scrollTop(),
-                        docheight = $(document).height(),
-                        winheight = $(window).height();
-                    var scrolltrigger = 0.50;
+            //capture scroll any percentage
+            $(window).scroll(function() {
 
-                    if ((wintop / (docheight - winheight)) > scrolltrigger) {
-                        $goToTop.show();
-                    } else {
-                        $goToTop.hide();
-                    }
-                });
-            }
+                var wintop = $(window).scrollTop(),
+                    docheight = $(document).height(),
+                    winheight = $(window).height();
+                var scrolltrigger = 0.50;
+
+                if ((wintop / (docheight - winheight)) > scrolltrigger) {
+                    $goToTop.show();
+                } else {
+                    $goToTop.hide();
+                }
+            });
         };
+
     }
 
 })();
