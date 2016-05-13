@@ -4,7 +4,6 @@
     angular.module('angularFullApp')
         .factory('Auth', Auth);
 
-
     function Auth($http, User, $cookieStore, $q) {
         var currentUser = {};
 
