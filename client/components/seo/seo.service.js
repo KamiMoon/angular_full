@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .service('SEOService', function($rootScope, CONSTANTS) {
+    angular.module('angularFullApp')
+        .service('SEOService', SEOService);
+
+    function SEOService($rootScope, CONSTANTS) {
 
         $rootScope.seo = {};
 
@@ -19,7 +22,6 @@ angular.module('angularFullApp')
             };
         };
 
-
         this.setSEO = function(seo) {
 
             //use whatever was left
@@ -33,4 +35,6 @@ angular.module('angularFullApp')
 
         };
 
-    });
+    }
+
+})();
