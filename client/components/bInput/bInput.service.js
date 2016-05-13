@@ -203,7 +203,6 @@
             "abbrev": "AP"
         }];
 
-
         var roles = [{
             role: 'user'
         }, {
