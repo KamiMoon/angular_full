@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .service('ValidationService', function($rootScope, $timeout) {
+    angular.module('angularFullApp')
+        .service('ValidationService', ValidationService);
+
+    function ValidationService($rootScope, $timeout) {
 
         //used as callback for validation errors
         this.displayErrors = function(form, err) {
@@ -19,7 +22,7 @@ angular.module('angularFullApp')
             });
         };
 
-        var displayBootsrapFeedback = function(text, clasz) {
+        function displayBootsrapFeedback(text, clasz) {
             $rootScope.errors = {};
 
             $rootScope.bFeedbackMessageClass = clasz;
@@ -28,7 +31,7 @@ angular.module('angularFullApp')
             $timeout(function() {
                 $rootScope.bFeedbackMessage = '';
             }, 5000);
-        };
+        }
 
         this.info = function(text) {
             displayBootsrapFeedback(text || 'Info:', 'info');
@@ -46,4 +49,6 @@ angular.module('angularFullApp')
             displayBootsrapFeedback(text || 'Success!', 'success');
         };
 
-    });
+    }
+
+})();

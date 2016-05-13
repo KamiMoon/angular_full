@@ -1,10 +1,13 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .directive('addToAny', function($timeout) {
+    angular.module('angularFullApp')
+        .directive('addToAny', addToAny);
+
+    function addToAny() {
         return {
-            templateUrl: 'components/social/addToAny.html',
             restrict: 'E',
+            templateUrl: 'components/social/addToAny.html',
             scope: {
                 url: '@',
                 title: '@'
@@ -16,4 +19,6 @@ angular.module('angularFullApp')
                 a2a.init('page');
             }
         };
-    });
+    }
+
+})();
