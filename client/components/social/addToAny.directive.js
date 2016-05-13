@@ -2,22 +2,24 @@
     'use strict';
 
     angular.module('angularFullApp')
-        .directive('addToAny', addToAny);
-
-    function addToAny() {
-        return {
-            restrict: 'E',
+        .component('addToAny', {
             templateUrl: 'components/social/addToAny.html',
-            scope: {
+            bindings: {
                 url: '@',
                 title: '@'
             },
-            link: function postLink(scope, element, attrs) {
-                //https://www.addtoany.com/buttons/customize/multiple_buttons_customize
-                a2a_config.linkname = attrs.title;
-                a2a_config.linkurl = window.location.origin + attrs.url;
-                a2a.init('page');
-            }
+            controller: addToAny,
+            controllerAs: 'vm'
+        });
+
+    function addToAny() {
+        var vm = this;
+
+        vm.$postLink = function() {
+            //https://www.addtoany.com/buttons/customize/multiple_buttons_customize
+            a2a_config.linkname = vm.title;
+            a2a_config.linkurl = window.location.origin + vm.url;
+            a2a.init('page');
         };
     }
 
