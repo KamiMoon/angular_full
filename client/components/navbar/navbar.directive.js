@@ -1,13 +1,16 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .directive('navbar', function($location, Auth, $anchorScroll) {
+    angular.module('angularFullApp')
+        .directive('navbar', navbar);
+
+    function navbar($location, Auth, $anchorScroll) {
 
         return {
             templateUrl: 'components/navbar/navbar.html',
             restrict: 'E',
             scope: {},
-            link: function(scope, element, attrs) {
+            link: function(scope) {
                 scope.menu = [{
                     'title': 'Home',
                     'link': '/'
@@ -43,4 +46,6 @@ angular.module('angularFullApp')
 
             }
         };
-    });
+    }
+
+})();

@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('angularFullApp')
-    .service('ControllerUtil', function(Upload, ValidationService, $q, $http, $localStorage, $location) {
+    angular.module('angularFullApp')
+        .service('ControllerUtil', ControllerUtil);
+
+    function ControllerUtil(Upload, ValidationService, $q, $http, $localStorage, $location) {
 
         this.upload = function(uploadObj) {
             return Upload.upload(uploadObj);
@@ -55,4 +58,6 @@ angular.module('angularFullApp')
             }
         };
 
-    });
+    }
+
+})();
